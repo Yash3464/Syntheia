@@ -1,4 +1,4 @@
-# Python cache
+c# Python cache
 __pycache__/
 *.pyc
 *.pyo
@@ -15,3 +15,11 @@ backend/venv312/
 # OS files
 .DS_Store
 Thumbs.db
+
+node_modules/
+frontend/node_modules/
+Syntheia/syntheia-web/node_modules/
+
+.env
+.env.*
+dist/
