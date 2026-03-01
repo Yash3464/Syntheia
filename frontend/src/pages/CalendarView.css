@@ -1,0 +1,28 @@
+.cal-screen { background: var(--black); }
+.cal-content { padding: 40px 24px 80px; }
+.cal-header { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
+.missed-bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.cal-layout { display: grid; grid-template-columns: 1fr 280px; gap: 24px; align-items: start; }
+.cal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 8px; }
+.cal-cell {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 12px 8px; background: var(--gray-1);
+  border: 1px solid var(--gray-2); border-top: 2px solid var(--status-color, var(--gray-3));
+  border-radius: var(--radius); cursor: pointer; transition: var(--transition);
+}
+.cal-cell:hover { border-color: var(--gray-3); border-top-color: var(--status-color); }
+.cal-cell.sel { outline: 2px solid var(--yellow); outline-offset: 2px; }
+.cal-cell.mark-missed { background: rgba(255,59,59,0.08); border-color: var(--red) !important; }
+.cal-cell-num { font-size: 0.65rem; color: var(--gray-4); }
+.cal-cell-status { font-size: 0.9rem; }
+.cal-cell.completed .cal-cell-status { color: var(--green); }
+.cal-cell.missed .cal-cell-status { color: var(--red); }
+.cal-cell-time { font-size: 0.6rem; color: var(--gray-4); }
+.cal-detail { background: var(--gray-1); border: 1px solid var(--gray-2); border-radius: var(--radius); padding: 24px; position: sticky; top: 80px; }
+.detail-topic-row { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--gray-5); padding: 8px 0; border-bottom: 1px solid var(--gray-2); }
+.detail-topic-row:last-child { border-bottom: none; }
+.detail-empty { display: flex; flex-direction: column; gap: 24px; }
+.legend { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.legend-item { display: flex; align-items: center; gap: 8px; }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+@media (max-width: 800px) { .cal-layout { grid-template-columns: 1fr; } .cal-detail { position: static; } }

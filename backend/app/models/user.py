@@ -28,18 +28,19 @@ class User(BaseModel):
     created_at: str = Field(default_factory=lambda: datetime.now().isoformat())
     updated_at: str = Field(default_factory=lambda: datetime.now().isoformat())
     
-    class Config:
-        schema_extra = {
-            "example": {
-                "username": "learner123",
-                "email": "learner@example.com",
-                "full_name": "John Doe",
-                "experience_level": "beginner",
-                "current_goal": "Learn Python for data analysis",
-                "preferences": {
-                    "preferred_learning_style": "visual",
-                    "daily_study_time_minutes": 90,
-                    "preferred_difficulty": "balanced"
-                }
+model_config = {
+    "json_schema_extra": {
+        "example": {
+            "username": "learner123",
+            "email": "learner@example.com",
+            "full_name": "John Doe",
+            "experience_level": "beginner",
+            "current_goal": "Learn Python for data analysis",
+            "preferences": {
+                "preferred_learning_style": "visual",
+                "daily_study_time_minutes": 90,
+                "preferred_difficulty": "balanced"
             }
         }
+    }
+}

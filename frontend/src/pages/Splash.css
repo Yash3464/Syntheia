@@ -1,0 +1,60 @@
+.splash-screen {
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.splash-screen::before {
+  content: 'SYNTHEIA';
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(120px, 20vw, 280px);
+  color: rgba(255,255,255,0.025);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: fadeInBg 1s ease 0.3s both;
+}
+
+@keyframes fadeInBg { from { opacity: 0; } to { opacity: 1; } }
+
+.splash-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  animation: logoReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+
+@keyframes logoReveal {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.splash-mark {
+  width: 72px; height: 72px;
+  background: var(--yellow);
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius);
+}
+.splash-mark span { font-family: var(--font-display); font-weight: 900; font-size: 2.8rem; color: var(--black); line-height: 1; }
+.splash-wordmark { font-family: var(--font-display); font-weight: 900; font-size: 2.4rem; letter-spacing: 0.15em; color: var(--white); }
+.splash-tagline { color: var(--gray-4); font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; }
+
+.splash-loader {
+  width: 120px; height: 2px;
+  background: var(--gray-2); border-radius: 999px; overflow: hidden;
+  animation: logoReveal 0.5s ease 0.8s both;
+}
+.splash-loader-bar {
+  height: 100%; background: var(--yellow); border-radius: 999px;
+  animation: loadBar 2s cubic-bezier(0.4, 0, 0.2, 1) 0.9s both;
+}
+@keyframes loadBar { from { width: 0%; } to { width: 100%; } }

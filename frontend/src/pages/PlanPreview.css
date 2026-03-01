@@ -1,0 +1,23 @@
+.preview-screen { background: var(--black); }
+.preview-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--gray-2); }
+.preview-content { padding-top: 56px; padding-bottom: 80px; }
+.preview-hero { margin-bottom: 56px; }
+.preview-headline { font-size: clamp(3rem, 7vw, 6rem); margin: 12px 0 32px; line-height: 0.92; }
+.preview-meta { display: flex; flex-wrap: wrap; gap: 12px; }
+.meta-chip { display: flex; flex-direction: column; gap: 4px; padding: 14px 20px; background: var(--gray-1); border: 1px solid var(--gray-2); border-radius: var(--radius); min-width: 120px; }
+.meta-chip .mono { font-size: 0.65rem; letter-spacing: 0.1em; }
+.meta-val { font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; color: var(--white); text-transform: uppercase; }
+.preview-body { display: flex; flex-direction: column; gap: 40px; }
+.preview-section { display: flex; flex-direction: column; gap: 16px; }
+.section-label { font-size: 0.7rem; letter-spacing: 0.15em; color: var(--gray-4); }
+.days-list { display: flex; flex-direction: column; gap: 8px; }
+.day-row { display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: var(--gray-1); border: 1px solid var(--gray-2); border-radius: var(--radius); transition: var(--transition); }
+.day-row:hover { border-color: var(--gray-3); }
+.day-row-more { justify-content: center; background: transparent; border-style: dashed; }
+.day-num { display: flex; flex-direction: column; align-items: center; min-width: 44px; }
+.day-num .mono { font-size: 0.6rem; color: var(--gray-4); }
+.day-num-val { font-family: var(--font-display); font-weight: 900; font-size: 1.5rem; color: var(--yellow); line-height: 1; }
+.day-topics { flex: 1; display: flex; flex-wrap: wrap; gap: 6px; }
+.topic-pill { padding: 4px 10px; background: var(--gray-2); border-radius: 999px; font-size: 0.8rem; color: var(--gray-5); }
+.day-time { flex-shrink: 0; font-size: 0.8rem; }
+.preview-cta { margin-top: 48px; display: flex; gap: 12px; flex-wrap: wrap; }
