@@ -1,34 +1,42 @@
-import { AppProvider, useApp } from './context/AppContext';
-import SplashScreen from './pages/SplashScreen';
-import WelcomeScreen from './pages/WelcomeScreen';
-import OnboardingScreen from './pages/OnboardingScreen';
-import PlanPreviewScreen from './pages/PlanPreviewScreen';
-import DashboardScreen from './pages/DashboardScreen';
-import CalendarViewScreen from './pages/CalendarViewScreen';
-import ProgressScreen from './pages/ProgressScreen';
-import RescheduleScreen from './pages/RescheduleScreen';
-import './styles/globals.css';
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
 
-function Router() {
-  const { state } = useApp();
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
 
-  switch (state.screen) {
-    case 'splash':       return <SplashScreen />;
-    case 'welcome':      return <WelcomeScreen />;
-    case 'onboarding':   return <OnboardingScreen />;
-    case 'plan-preview': return <PlanPreviewScreen />;
-    case 'dashboard':    return <DashboardScreen />;
-    case 'calendar':     return <CalendarViewScreen />;
-    case 'progress':     return <ProgressScreen />;
-    case 'reschedule':   return <RescheduleScreen />;
-    default:             return <WelcomeScreen />;
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
-export default function App() {
-  return (
-    <AppProvider>
-      <Router />
-    </AppProvider>
-  );
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
 }
