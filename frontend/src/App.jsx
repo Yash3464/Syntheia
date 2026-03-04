@@ -1,6 +1,7 @@
 import { AppProvider, useApp } from './context/AppContext';
 import SplashScreen from './pages/SplashScreen';
 import WelcomeScreen from './pages/WelcomeScreen';
+import AuthScreen from './pages/AuthScreen';
 import OnboardingScreen from './pages/OnboardingScreen';
 import PlanPreviewScreen from './pages/PlanPreviewScreen';
 import DashboardScreen from './pages/DashboardScreen';
@@ -13,15 +14,16 @@ function Router() {
   const { state } = useApp();
 
   switch (state.screen) {
-    case 'splash':       return <SplashScreen />;
-    case 'welcome':      return <WelcomeScreen />;
-    case 'onboarding':   return <OnboardingScreen />;
+    case 'splash': return <SplashScreen />;
+    case 'welcome': return <WelcomeScreen />;
+    case 'auth': return <AuthScreen />;
+    case 'onboarding': return <OnboardingScreen />;
     case 'plan-preview': return <PlanPreviewScreen />;
-    case 'dashboard':    return <DashboardScreen />;
-    case 'calendar':     return <CalendarViewScreen />;
-    case 'progress':     return <ProgressScreen />;
-    case 'reschedule':   return <RescheduleScreen />;
-    default:             return <WelcomeScreen />;
+    case 'dashboard': return <DashboardScreen />;
+    case 'calendar': return <CalendarViewScreen />;
+    case 'progress': return <ProgressScreen />;
+    case 'reschedule': return <RescheduleScreen />;
+    default: return <WelcomeScreen />;
   }
 }
 

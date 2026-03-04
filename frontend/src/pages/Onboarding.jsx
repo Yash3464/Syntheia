@@ -1,373 +1,267 @@
-import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import supabase from "../lib/supabaseClient";
-import "./Onboarding.css";
+import { useEffect, useState } from 'react';
+import { supabase } from '../lib/supabaseClient';
+import { useApp } from '../context/AppContext';
+import { api } from '../services/api';
+import './Onboarding.css';
 
-export default function Onboarding() {
-  const navigate = useNavigate();
+const STEPS = [
+  { id: 'profile', label: '01', title: 'Who are you?' },
+  { id: 'skills',  label: '02', title: 'What do you want to learn?' },
+  { id: 'pace',    label: '03', title: 'How do you learn?' },
+];
 
-  const [step, setStep] = useState(1);
+const MODULES = [
+  { id: 'python', name: 'Python', icon: '🐍', desc: 'Programming fundamentals to advanced' },
+  { id: 'machine_learning', name: 'Machine Learning', icon: '🤖', desc: 'Coming soon', disabled: true },
+  { id: 'web_development',  name: 'Web Dev', icon: '🌐', desc: 'Coming soon', disabled: true },
+  { id: 'sql', name: 'SQL & Databases', icon: '🗄️', desc: 'Coming soon', disabled: true },
+];
 
-  const [fullName, setFullName] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [learningGoal, setLearningGoal] = useState("");
+const INTERESTS = ['AI', 'Web Dev', 'Data Science', 'Backend', 'DevOps', 'Mobile', 'Security', 'Open Source'];
 
-  const [moduleChoice, setModuleChoice] = useState("Python");
-  const [levelChoice, setLevelChoice] = useState("Beginner");
-  const [interests, setInterests] = useState("");
+const PACES = [
+  { id: 'slow',   label: 'Relaxed', desc: '~40 min/day', detail: 'Steady and thorough' },
+  { id: 'medium', label: 'Balanced', desc: '~60 min/day', detail: 'Best for most learners' },
+  { id: 'fast',   label: 'Intense',  desc: '~90 min/day', detail: 'Fast-paced' },
+];
+
+export default function OnboardingScreen() {
+  const { dispatch, navigate } = useApp();
+  const [step, setStep] = useState(0);
+
+  const [form, setForm] = useState({
+    username: '', email: '', full_name: '',
+    experience_level: 'beginner',
+    module_id: 'python',
+    interests: [],
+    pace: 'medium',
+    daily_study_time_minutes: 60,
+    current_goal: '',
+  });
 
   const [loading, setLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const stepMeta = useMemo(
-    () => [
-      { key: "profile", label: "01", title: "WHO ARE YOU?" },
-      { key: "learn", label: "02", title: "LEARN?" },
-      { key: "finish", label: "03", title: "READY?" },
-    ],
-    []
-  );
+  const [error, setError] = useState('');
+  const [sessionUser, setSessionUser] = useState(null);
 
   useEffect(() => {
     (async () => {
       const { data, error } = await supabase.auth.getUser();
-      if (error) return;
-
-      const authedEmail = data?.user?.email || "";
-      setEmail(authedEmail);
-
-      const uid = data?.user?.id;
-      if (!uid) return;
-
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("full_name, username, email, learning_goal")
-        .eq("id", uid)
-        .maybeSingle();
-
-      if (profile) {
-        setFullName(profile.full_name ?? "");
-        setUsername(profile.username ?? "");
-        setEmail(profile.email ?? authedEmail);
-        setLearningGoal(profile.learning_goal ?? "");
+      if (error) {
+        console.error('Supabase getUser error:', error);
+        setSessionUser(null);
+        return;
       }
+      setSessionUser(data?.user ?? null);
     })();
   }, []);
 
-  const normalizeUsername = (value) => {
-    const v = (value || "").trim().toLowerCase();
-    return v.replace(/[^a-z0-9_]/g, "").slice(0, 32);
+  const toggleInterest = (interest) => {
+    setForm((prev) => {
+      const exists = prev.interests.includes(interest);
+      return { ...prev, interests: exists ? prev.interests.filter(i => i !== interest) : [...prev.interests, interest] };
+    });
   };
 
-  const handleContinue = async (e) => {
-    e.preventDefault();
-    setErrorMsg("");
-
-    const { data, error } = await supabase.auth.getUser();
-    if (error) {
-      setErrorMsg(error.message || "Auth error");
-      return;
+  const handleNext = () => {
+    if (step === 0) {
+      if (!form.username.trim()) return setError('Username is required.');
     }
+    setError('');
+    setStep((s) => Math.min(s + 1, STEPS.length - 1));
+  };
 
-    const user = data?.user;
-    if (!user) {
-      setErrorMsg("You are not signed in. Please login again.");
-      return;
-    }
-
-    const uid = user.id;
-    const userEmail = user.email || email || "";
-
-    const cleanedUsername = normalizeUsername(username);
-
+  const handleSubmit = async () => {
     setLoading(true);
-    const { error: upsertError } = await supabase.from("profiles").upsert(
-      {
-        id: uid,
-        email: userEmail,
-        full_name: fullName?.trim() || null,
-        username: cleanedUsername || null,
-        learning_goal: learningGoal?.trim() || null,
-        updated_at: new Date().toISOString(),
-      },
-      { onConflict: "id" }
-    );
-    setLoading(false);
+    setError('');
+    try {
+      // 1) Require Supabase Auth user (so profiles + user_id are real)
+      const { data: userRes, error: userErr } = await supabase.auth.getUser();
+      if (userErr) throw userErr;
 
-    if (upsertError) {
-      setErrorMsg(upsertError.message || "Failed to save profile");
-      return;
+      const authUser = userRes?.user;
+      if (!authUser) {
+        throw new Error('You are not signed in. Please sign in first, then complete onboarding.');
+      }
+
+      // 2) Save profile in Supabase "profiles" table
+      const profilePayload = {
+        id: authUser.id,
+        email: (form.email || authUser.email || '').trim() || null,
+        full_name: form.full_name?.trim() || null,
+        username: form.username?.trim() || null,
+        learning_goal: form.current_goal?.trim() || null,
+      };
+
+      const { data: upsertData, error: upsertErr } = await supabase
+        .from('profiles')
+        .upsert(profilePayload, { onConflict: 'id' })
+        .select('id');
+
+      if (upsertErr) throw upsertErr;
+
+      // 3) Build backend User model (matches backend app/models/user.py)
+      const user = {
+        id: authUser.id, // ✅ ensures backend returns user_id != "anonymous"
+        username: form.username || 'learner',
+        email: form.email || authUser.email || 'learner@syntheia.app',
+        full_name: form.full_name || null,
+        experience_level: form.experience_level,
+        current_goal: form.current_goal || null,
+        preferences: {
+          preferred_learning_style: 'mixed',
+          daily_study_time_minutes: form.daily_study_time_minutes,
+          preferred_difficulty: 'balanced',
+          notifications_enabled: true,
+          email_updates: false,
+        },
+      };
+
+      dispatch({ type: 'SET_USER', payload: user });
+      dispatch({
+        type: 'SET_PROFILE',
+        payload: { module_id: form.module_id, pace: form.pace, interests: form.interests },
+      });
+
+      // 4) Call backend to generate plan
+      const plan = await api.createLearningPath(user, form.module_id, form.experience_level, form.pace);
+
+      dispatch({ type: 'SET_PLAN', payload: plan });
+      navigate('plan-preview');
+
+      console.log('Supabase profile saved:', upsertData);
+      console.log('Plan generated:', plan);
+    } catch (e) {
+      setError(e?.message || 'Unknown error');
+    } finally {
+      setLoading(false);
     }
-
-    setStep(2);
-  };
-
-  const handleBack = () => {
-    if (step === 1) {
-      navigate(-1);
-      return;
-    }
-    setStep((s) => Math.max(1, s - 1));
-  };
-
-  const handleStep2Continue = async () => {
-    setErrorMsg("");
-
-    const { data, error } = await supabase.auth.getUser();
-    if (error) {
-      setErrorMsg(error.message || "Auth error");
-      return;
-    }
-
-    const user = data?.user;
-    if (!user) {
-      setErrorMsg("You are not signed in. Please login again.");
-      return;
-    }
-
-    const uid = user.id;
-
-    setLoading(true);
-    const { error: updateError } = await supabase
-      .from("profiles")
-      .update({
-        updated_at: new Date().toISOString(),
-      })
-      .eq("id", uid);
-    setLoading(false);
-
-    if (updateError) {
-      setErrorMsg(updateError.message || "Failed to save");
-      return;
-    }
-
-    setStep(3);
-  };
-
-  const handleFinish = () => {
-    navigate("/dashboard");
   };
 
   return (
-    <div className="onboard-screen">
-      <header className="onboard-header">
-        <button type="button" className="onboard-back" onClick={handleBack}>
-          ← BACK
+    <div className="onboard-screen screen">
+      <div className="onboard-header">
+        <button className="btn btn-ghost" onClick={() => step === 0 ? navigate('welcome') : setStep(s => s - 1)}>
+          ← Back
         </button>
 
         <div className="onboard-steps">
-          {stepMeta.map((s, idx) => {
-            const n = idx + 1;
-            const cls =
-              n === step ? "onboard-step-dot active" : n < step ? "onboard-step-dot done" : "onboard-step-dot";
-            return (
-              <div key={s.key} className={cls}>
-                {s.label}
-              </div>
-            );
-          })}
+          {STEPS.map((s, i) => (
+            <div key={s.id} className={`onboard-step-dot ${i === step ? 'active' : ''} ${i < step ? 'done' : ''}`}>
+              {i < step ? '✓' : s.label}
+            </div>
+          ))}
         </div>
 
-        <div className="onboard-right">
-          <span className="onboard-progress">
-            {step} / {stepMeta.length}
-          </span>
+        <div className="mono text-gray" style={{ fontSize: '0.75rem' }}>
+          {step + 1} / {STEPS.length}
         </div>
-      </header>
+      </div>
 
-      {step === 1 && (
-        <main className="onboard-content">
-          <div className="onboard-title-row">
-            <div className="onboard-step-kicker">STEP 01</div>
+      <div style={{ padding: '0 24px', marginTop: 6, opacity: 0.75, fontSize: 12 }}>
+        Auth user: {sessionUser ? (sessionUser.email || sessionUser.id) : 'NOT SIGNED IN'}
+      </div>
+
+      <div className="onboard-body">
+        {step === 0 && (
+          <div className="onboard-panel">
+            <div className="onboard-step-label">STEP 01</div>
             <h1 className="onboard-title">WHO ARE YOU?</h1>
-          </div>
 
-          <form className="onboard-form" onSubmit={handleContinue}>
             <div className="onboard-field">
               <label className="onboard-label">YOUR NAME (OPTIONAL)</label>
-              <input
-                className="onboard-input"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder="e.g. Alex"
-                autoComplete="name"
-              />
+              <input className="onboard-input" value={form.full_name}
+                     onChange={(e) => setForm({ ...form, full_name: e.target.value })}
+                     placeholder="e.g. Alex" />
             </div>
 
             <div className="onboard-field">
               <label className="onboard-label">USERNAME</label>
-              <input
-                className="onboard-input"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="e.g. alexlearns"
-                autoComplete="username"
-              />
+              <input className="onboard-input" value={form.username}
+                     onChange={(e) => setForm({ ...form, username: e.target.value })}
+                     placeholder="e.g. alexlearns" required />
             </div>
 
             <div className="onboard-field">
               <label className="onboard-label">EMAIL (OPTIONAL)</label>
-              <input
-                className="onboard-input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your@email.com"
-                autoComplete="email"
-                disabled
-              />
+              <input className="onboard-input" value={form.email}
+                     onChange={(e) => setForm({ ...form, email: e.target.value })}
+                     placeholder="your@email.com" />
             </div>
 
             <div className="onboard-field">
               <label className="onboard-label">WHAT'S YOUR LEARNING GOAL?</label>
-              <input
-                className="onboard-input"
-                value={learningGoal}
-                onChange={(e) => setLearningGoal(e.target.value)}
-                placeholder="e.g. Get a job in data science"
-              />
+              <input className="onboard-input" value={form.current_goal}
+                     onChange={(e) => setForm({ ...form, current_goal: e.target.value })}
+                     placeholder="e.g. Get a job in data science" />
             </div>
 
-            {errorMsg ? <div className="onboard-error">{errorMsg}</div> : null}
-
-            <button className="onboard-cta" type="submit" disabled={loading}>
-              {loading ? "SAVING..." : "CONTINUE →"}
-            </button>
-          </form>
-        </main>
-      )}
-
-      {step === 2 && (
-        <main className="onboard-content">
-          <div className="onboard-title-row">
-            <div className="onboard-step-kicker">STEP 02</div>
-            <h1 className="onboard-title">LEARN?</h1>
+            <button className="onboard-cta" onClick={handleNext}>CONTINUE →</button>
           </div>
+        )}
 
-          <div className="onboard-form">
-            <div className="onboard-field">
-              <label className="onboard-label">PICK A MODULE</label>
+        {step === 1 && (
+          <div className="onboard-panel">
+            <div className="onboard-step-label">STEP 02</div>
+            <h1 className="onboard-title">WHAT DO YOU WANT TO LEARN?</h1>
 
-              <div className="module-grid">
+            <div className="module-grid">
+              {MODULES.map((m) => (
                 <button
-                  type="button"
-                  className={moduleChoice === "Python" ? "module-card active" : "module-card"}
-                  onClick={() => setModuleChoice("Python")}
+                  key={m.id}
+                  disabled={m.disabled}
+                  className={`module-card ${form.module_id === m.id ? 'active' : ''} ${m.disabled ? 'disabled' : ''}`}
+                  onClick={() => !m.disabled && setForm({ ...form, module_id: m.id })}
                 >
-                  <div className="module-name">Python</div>
-                  <div className="module-desc">Programming fundamentals to advanced</div>
+                  <div className="module-icon">{m.icon}</div>
+                  <div className="module-name">{m.name}</div>
+                  <div className="module-desc">{m.desc}</div>
                 </button>
-
-                <button type="button" className="module-card disabled">
-                  <div className="module-name">Machine Learning</div>
-                  <div className="module-desc">Coming soon</div>
-                </button>
-
-                <button type="button" className="module-card disabled">
-                  <div className="module-name">Web Dev</div>
-                  <div className="module-desc">Coming soon</div>
-                </button>
-
-                <button type="button" className="module-card disabled">
-                  <div className="module-name">SQL & Databases</div>
-                  <div className="module-desc">Coming soon</div>
-                </button>
-              </div>
+              ))}
             </div>
 
-            <div className="onboard-field">
-              <label className="onboard-label">YOUR CURRENT LEVEL</label>
-
-              <div className="level-row">
+            <div className="interest-grid">
+              {INTERESTS.map((i) => (
                 <button
-                  type="button"
-                  className={levelChoice === "Beginner" ? "level-card active" : "level-card"}
-                  onClick={() => setLevelChoice("Beginner")}
+                  key={i}
+                  className={`pill ${form.interests.includes(i) ? 'active' : ''}`}
+                  onClick={() => toggleInterest(i)}
                 >
-                  <div className="level-name">Beginner</div>
-                  <div className="level-desc">Just starting out</div>
+                  {i}
                 </button>
-
-                <button
-                  type="button"
-                  className={levelChoice === "Intermediate" ? "level-card active" : "level-card"}
-                  onClick={() => setLevelChoice("Intermediate")}
-                >
-                  <div className="level-name">Intermediate</div>
-                  <div className="level-desc">Know the basics</div>
-                </button>
-
-                <button
-                  type="button"
-                  className={levelChoice === "Advanced" ? "level-card active" : "level-card"}
-                  onClick={() => setLevelChoice("Advanced")}
-                >
-                  <div className="level-name">Advanced</div>
-                  <div className="level-desc">Want mastery</div>
-                </button>
-              </div>
+              ))}
             </div>
 
-            <div className="onboard-field">
-              <label className="onboard-label">INTERESTS (OPTIONAL)</label>
-              <input
-                className="onboard-input"
-                value={interests}
-                onChange={(e) => setInterests(e.target.value)}
-                placeholder="e.g. automation, data, web apps"
-              />
+            <button className="onboard-cta" onClick={handleNext}>CONTINUE →</button>
+          </div>
+        )}
+
+        {step === 2 && (
+          <div className="onboard-panel">
+            <div className="onboard-step-label">STEP 03</div>
+            <h1 className="onboard-title">HOW DO YOU LEARN?</h1>
+
+            <div className="pace-grid">
+              {PACES.map((p) => (
+                <button
+                  key={p.id}
+                  className={`pace-card ${form.pace === p.id ? 'active' : ''}`}
+                  onClick={() => setForm({ ...form, pace: p.id })}
+                >
+                  <div className="pace-label">{p.label}</div>
+                  <div className="pace-desc">{p.desc}</div>
+                  <div className="pace-detail">{p.detail}</div>
+                </button>
+              ))}
             </div>
 
-            {errorMsg ? <div className="onboard-error">{errorMsg}</div> : null}
-
-            <button className="onboard-cta" type="button" onClick={handleStep2Continue} disabled={loading}>
-              {loading ? "SAVING..." : "CONTINUE →"}
+            <button className="onboard-cta" onClick={handleSubmit} disabled={loading}>
+              {loading ? 'CREATING PLAN...' : 'FINISH →'}
             </button>
           </div>
-        </main>
-      )}
+        )}
 
-      {step === 3 && (
-        <main className="onboard-content">
-          <div className="onboard-title-row">
-            <div className="onboard-step-kicker">STEP 03</div>
-            <h1 className="onboard-title">READY?</h1>
-          </div>
-
-          <div className="onboard-summary">
-            <div className="onboard-summary-row">
-              <span className="onboard-summary-key">Name</span>
-              <span className="onboard-summary-val">{fullName || "-"}</span>
-            </div>
-            <div className="onboard-summary-row">
-              <span className="onboard-summary-key">Username</span>
-              <span className="onboard-summary-val">{username || "-"}</span>
-            </div>
-            <div className="onboard-summary-row">
-              <span className="onboard-summary-key">Email</span>
-              <span className="onboard-summary-val">{email || "-"}</span>
-            </div>
-            <div className="onboard-summary-row">
-              <span className="onboard-summary-key">Goal</span>
-              <span className="onboard-summary-val">{learningGoal || "-"}</span>
-            </div>
-            <div className="onboard-summary-row">
-              <span className="onboard-summary-key">Module</span>
-              <span className="onboard-summary-val">{moduleChoice}</span>
-            </div>
-            <div className="onboard-summary-row">
-              <span className="onboard-summary-key">Level</span>
-              <span className="onboard-summary-val">{levelChoice}</span>
-            </div>
-          </div>
-
-          {errorMsg ? <div className="onboard-error">{errorMsg}</div> : null}
-
-          <button className="onboard-cta" type="button" onClick={handleFinish}>
-            GO TO DASHBOARD →
-          </button>
-        </main>
-      )}
+        {error ? <div style={{ marginTop: 14, color: '#ff4d4f', padding: '0 24px' }}>{error}</div> : null}
+      </div>
     </div>
   );
 }
