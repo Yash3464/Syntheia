@@ -10,7 +10,7 @@ function fmt(min) {
 }
 
 export default function DashboardScreen() {
-  const { state, dispatch, navigate } = useApp();
+  const { state, dispatch, navigate, signOut } = useApp();
   const { activePlan } = state;
   const [progress, setProgress] = useState(null);
   const [completing, setCompleting] = useState(null);
@@ -53,7 +53,10 @@ export default function DashboardScreen() {
           <button className="nav-link" onClick={() => navigate('calendar')}>Calendar</button>
           <button className="nav-link" onClick={() => navigate('progress')}>Progress</button>
         </div>
-        <button className="btn btn-ghost mono" onClick={() => navigate('welcome')} style={{ fontSize: '0.8rem' }}>↩ Home</button>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button className="btn btn-ghost mono" onClick={() => navigate('welcome')} style={{ fontSize: '0.8rem' }}>↩ Home</button>
+          <button className="btn btn-ghost mono" onClick={signOut} style={{ fontSize: '0.8rem', color: '#ff6b6b' }}>Sign Out</button>
+        </div>
       </nav>
 
       <div className="dash-content container">

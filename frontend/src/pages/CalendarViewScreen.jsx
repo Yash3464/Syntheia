@@ -12,7 +12,7 @@ function fmt(min) {
 }
 
 export default function CalendarViewScreen() {
-  const { state, dispatch, navigate } = useApp();
+  const { state, dispatch, navigate, signOut } = useApp();
   const { activePlan } = state;
   const [selected, setSelected] = useState(null);
   const [completing, setCompleting] = useState(false);
@@ -57,7 +57,10 @@ export default function CalendarViewScreen() {
           <button className="nav-link active">Calendar</button>
           <button className="nav-link" onClick={() => navigate('progress')}>Progress</button>
         </div>
-        <button className="btn btn-ghost mono" onClick={() => navigate('dashboard')} style={{ fontSize: '0.8rem' }}>← Back</button>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button className="btn btn-ghost mono" onClick={() => navigate('dashboard')} style={{ fontSize: '0.8rem' }}>← Back</button>
+          <button className="btn btn-ghost mono" onClick={signOut} style={{ fontSize: '0.8rem', color: '#ff6b6b' }}>Sign Out</button>
+        </div>
       </nav>
 
       <div className="cal-content container">

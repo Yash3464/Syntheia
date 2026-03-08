@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from 'react';
+import { supabase } from '../lib/supabaseClient';
 
 const AppContext = createContext(null);
 
@@ -30,8 +31,18 @@ export function AppProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = (screen) => dispatch({ type: 'SET_SCREEN', payload: screen });
 
+  const signOut = async () => {
+    try {
+      await supabase.auth.signOut();
+      dispatch({ type: 'RESET' });
+      navigate('welcome');
+    } catch (error) {
+      console.error('Sign out error:', error);
+    }
+  };
+
   return (
-    <AppContext.Provider value={{ state, dispatch, navigate }}>
+    <AppContext.Provider value={{ state, dispatch, navigate, signOut }}>
       {children}
     </AppContext.Provider>
   );

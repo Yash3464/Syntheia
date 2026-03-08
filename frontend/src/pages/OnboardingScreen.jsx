@@ -32,7 +32,7 @@ const PACES = [
 const INTERESTS = ['AI', 'Web Dev', 'Data Science', 'Backend', 'DevOps', 'Mobile', 'Security', 'Open Source'];
 
 export default function OnboardingScreen() {
-  const { dispatch, navigate } = useApp();
+  const { dispatch, navigate, signOut } = useApp();
   const [step, setStep] = useState(0);
 
   const [fullName, setFullName] = useState('');
@@ -142,16 +142,21 @@ export default function OnboardingScreen() {
           ← Back
         </button>
 
-        <div className="onboard-steps">
-          {STEPS.map((s, i) => (
-            <div key={s.id} className={`onboard-step-dot ${i === step ? 'active' : ''} ${i < step ? 'done' : ''}`}>
-              {i < step ? '✓' : s.label}
-            </div>
-          ))}
-        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+          <div className="onboard-steps">
+            {STEPS.map((s, i) => (
+              <div key={s.id} className={`onboard-step-dot ${i === step ? 'active' : ''} ${i < step ? 'done' : ''}`}>
+                {i < step ? '✓' : s.label}
+              </div>
+            ))}
+          </div>
 
-        <div className="mono text-gray" style={{ fontSize: '0.75rem' }}>
-          {step + 1} / {STEPS.length}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div className="mono text-gray" style={{ fontSize: '0.75rem' }}>
+              {step + 1} / {STEPS.length}
+            </div>
+            <button className="btn btn-ghost mono" onClick={signOut} style={{ fontSize: '0.7rem', color: '#ff6b6b' }}>Sign Out</button>
+          </div>
         </div>
       </div>
 

@@ -4,7 +4,7 @@ import { api } from '../services/api';
 import './Reschedule.css';
 
 export default function RescheduleScreen() {
-  const { state, dispatch, navigate } = useApp();
+  const { state, dispatch, navigate, signOut } = useApp();
   const { activePlan } = state;
   const [missedDays, setMissedDays] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -35,7 +35,10 @@ export default function RescheduleScreen() {
       <nav className="dash-nav">
         <div className="dash-logo"><div className="logo-mark">S</div><span>SYNTHEIA</span></div>
         <div className="mono text-gray" style={{ fontSize: '0.75rem' }}>RESCHEDULE PLAN</div>
-        <button className="btn btn-ghost mono" onClick={() => navigate('dashboard')} style={{ fontSize: '0.8rem' }}>← Dashboard</button>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button className="btn btn-ghost mono" onClick={() => navigate('dashboard')} style={{ fontSize: '0.8rem' }}>← Dashboard</button>
+          <button className="btn btn-ghost mono" onClick={signOut} style={{ fontSize: '0.8rem', color: '#ff6b6b' }}>Sign Out</button>
+        </div>
       </nav>
 
       <div className="reschedule-content container">

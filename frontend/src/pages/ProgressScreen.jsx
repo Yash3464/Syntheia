@@ -4,7 +4,7 @@ import { api } from '../services/api';
 import './Progress.css';
 
 export default function ProgressScreen() {
-  const { state, navigate } = useApp();
+  const { state, navigate, signOut } = useApp();
   const { activePlan } = state;
   const [progress, setProgress] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -37,7 +37,10 @@ export default function ProgressScreen() {
           <button className="nav-link" onClick={() => navigate('calendar')}>Calendar</button>
           <button className="nav-link active">Progress</button>
         </div>
-        <button className="btn btn-ghost mono" onClick={() => navigate('dashboard')} style={{ fontSize: '0.8rem' }}>← Back</button>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button className="btn btn-ghost mono" onClick={() => navigate('dashboard')} style={{ fontSize: '0.8rem' }}>← Back</button>
+          <button className="btn btn-ghost mono" onClick={signOut} style={{ fontSize: '0.8rem', color: '#ff6b6b' }}>Sign Out</button>
+        </div>
       </nav>
 
       <div className="progress-content container">
