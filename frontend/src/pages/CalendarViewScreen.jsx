@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { api } from '../services/api';
+import QuizModal from '../components/QuizModal';
 import './CalendarView.css';
 
 const STATUS_COLOR = { completed: 'var(--green)', missed: 'var(--red)', pending: 'var(--gray-3)', in_progress: 'var(--yellow)' };
@@ -16,6 +17,7 @@ export default function CalendarViewScreen() {
   const { activePlan } = state;
   const [selected, setSelected] = useState(null);
   const [completing, setCompleting] = useState(false);
+  const [quizFor, setQuizFor] = useState(null);
   const [missedInput, setMissedInput] = useState([]);
   const [error, setError] = useState('');
 
@@ -23,7 +25,9 @@ export default function CalendarViewScreen() {
 
   const tasks = activePlan.daily_tasks || [];
 
-  const handleComplete = async (dayNum) => {
+  const onQuizComplete = async () => {
+    const dayNum = quizFor.day_number;
+    setQuizFor(null);
     setCompleting(true);
     try {
       await api.markDayCompleted(activePlan.plan_id, dayNum);
@@ -32,6 +36,10 @@ export default function CalendarViewScreen() {
       setSelected(updated.daily_tasks.find(t => t.day_number === dayNum));
     } catch (e) { setError(e.message); }
     finally { setCompleting(false); }
+  };
+
+  const handleCompleteRequest = (day) => {
+    setQuizFor(day);
   };
 
   const toggleMissed = (dayNum) => setMissedInput(prev =>
@@ -47,6 +55,8 @@ export default function CalendarViewScreen() {
       navigate('reschedule');
     } catch (e) { setError(e.message); }
   };
+
+  const start = new Date(activePlan.start_date);
 
   return (
     <div className="cal-screen screen">
@@ -66,14 +76,14 @@ export default function CalendarViewScreen() {
       <div className="cal-content container">
         <div className="cal-header">
           <div>
-            <div className="mono text-gray" style={{ fontSize: '0.75rem', marginBottom: 8 }}>FULL PLAN CALENDAR</div>
-            <h2 style={{ fontSize: '2.5rem' }}>{activePlan.total_days} DAYS</h2>
+            <div className="mono text-gray" style={{ fontSize: '0.75rem', marginBottom: 8 }}>LEARNING TIMELINE</div>
+            <h2 style={{ fontSize: '3rem' }}>{activePlan.total_days} DAY JOURNEY</h2>
           </div>
           {missedInput.length > 0 && (
-            <div className="missed-bar">
-              <span className="mono text-red" style={{ fontSize: '0.8rem' }}>{missedInput.length} day(s) marked missed</span>
-              <button className="btn btn-danger" onClick={handleReschedule}>Reschedule These Days</button>
-              <button className="btn btn-ghost" onClick={() => setMissedInput([])}>Clear</button>
+            <div className="missed-bar card" style={{ padding: '12px 20px', borderLeft: '3px solid var(--red)' }}>
+              <span className="mono text-red" style={{ fontSize: '0.8rem' }}>{missedInput.length} DAY(S) MISSED</span>
+              <button className="btn btn-danger" style={{ padding: '8px 16px', fontSize: '0.8rem' }} onClick={handleReschedule}>Reschedule Plan</button>
+              <button className="btn btn-ghost" style={{ padding: '8px 16px', fontSize: '0.8rem' }} onClick={() => setMissedInput([])}>Clear</button>
             </div>
           )}
         </div>
@@ -81,39 +91,64 @@ export default function CalendarViewScreen() {
         {error && <div className="error-banner" style={{ marginBottom: 16 }}>{error}</div>}
 
         <div className="cal-layout">
-          <div className="cal-grid">
-            {tasks.map(task => (
-              <button
-                key={task.day_number}
-                className={`cal-cell ${task.status} ${selected?.day_number === task.day_number ? 'sel' : ''} ${missedInput.includes(task.day_number) ? 'mark-missed' : ''}`}
-                onClick={() => setSelected(task)}
-                style={{ '--status-color': STATUS_COLOR[task.status] || STATUS_COLOR.pending }}
-              >
-                <span className="cal-cell-num mono">D{task.day_number}</span>
-                <span className="cal-cell-status">
-                  {task.status === 'completed' && '✓'}
-                  {task.status === 'missed' && '✗'}
-                  {task.status === 'pending' && '·'}
-                </span>
-                <span className="cal-cell-time mono">{fmt(task.estimated_time_minutes)}</span>
-              </button>
-            ))}
+          <div className="cal-main">
+            <div className="week-label-grid">
+              {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(d => (
+                <div key={d} className="week-label">{d}</div>
+              ))}
+            </div>
+            <div className="cal-grid">
+              {tasks.map((task, i) => {
+                const date = new Date(start);
+                date.setDate(start.getDate() + i);
+                const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                
+                return (
+                  <button
+                    key={task.day_number}
+                    className={`cal-cell ${task.status} ${selected?.day_number === task.day_number ? 'sel' : ''} ${missedInput.includes(task.day_number) ? 'mark-missed' : ''}`}
+                    onClick={() => setSelected(task)}
+                    style={{ '--status-color': STATUS_COLOR[task.status] || STATUS_COLOR.pending }}
+                  >
+                    <span className="cal-cell-num">D{task.day_number}</span>
+                    <span className="cal-cell-status">
+                      {task.status === 'completed' && '✓'}
+                      {task.status === 'missed' && '✗'}
+                      {task.status === 'pending' && '·'}
+                    </span>
+                    <div className="cal-cell-time">{fmt(task.estimated_time_minutes)}</div>
+                    <div className="cal-cell-date mono">{dateStr}</div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           <div className="cal-detail">
             {selected ? (
               <>
-                <div className="mono text-yellow" style={{ fontSize: '0.7rem', marginBottom: 12 }}>DAY {selected.day_number} DETAILS</div>
-                <div className={`badge badge-${selected.status === 'completed' ? 'green' : selected.status === 'missed' ? 'red' : 'yellow'}`} style={{ marginBottom: 16 }}>{selected.status}</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
+                <div className="mono text-yellow" style={{ fontSize: '0.7rem', marginBottom: 12, letterSpacing: '0.1em' }}>DAY {selected.day_number} DETAILS</div>
+                <div style={{ marginBottom: 24 }}>
+                  <div className={`badge badge-${selected.status === 'completed' ? 'green' : selected.status === 'missed' ? 'red' : 'yellow'}`} style={{ marginBottom: 12 }}>{selected.status}</div>
+                  <h3 style={{ fontSize: '1.2rem', textTransform: 'none' }}>Topic Coverage</h3>
+                </div>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginBottom: 24 }}>
                   {selected.topics.map((t, i) => (
-                    <div key={i} className="detail-topic-row"><span className="text-gray">○</span><span>{t}</span></div>
+                    <div key={i} className="detail-topic-row">
+                      <div className="detail-indicator" />
+                      <span>{t}</span>
+                    </div>
                   ))}
                 </div>
-                <div className="mono text-gray" style={{ fontSize: '0.8rem' }}>⏱ {fmt(selected.estimated_time_minutes)}</div>
+                
+                <div className="flex justify-between items-center" style={{ marginTop: 'auto', paddingTop: 24, borderTop: '1px solid var(--gray-2)' }}>
+                  <div className="mono text-gray" style={{ fontSize: '0.85rem' }}>⏱ {fmt(selected.estimated_time_minutes)}</div>
+                </div>
+
                 {selected.status === 'pending' && (
-                  <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                    <button className="btn btn-primary w-full" style={{ justifyContent: 'center' }} onClick={() => handleComplete(selected.day_number)} disabled={completing}>
+                  <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                    <button className="btn btn-primary w-full" style={{ justifyContent: 'center' }} onClick={() => handleCompleteRequest(selected)} disabled={completing}>
                       {completing ? 'Saving...' : '✓ Mark Complete'}
                     </button>
                     <button className="btn btn-outline w-full" style={{ justifyContent: 'center', borderColor: 'var(--red)', color: 'var(--red)' }} onClick={() => toggleMissed(selected.day_number)}>
@@ -124,12 +159,12 @@ export default function CalendarViewScreen() {
               </>
             ) : (
               <div className="detail-empty">
-                <div className="mono text-gray" style={{ fontSize: '0.85rem' }}>Click any day to see details</div>
-                <div className="legend">
+                <div className="mono text-gray" style={{ fontSize: '0.85rem' }}>Select a day to view details</div>
+                <div className="legend" style={{ marginTop: 32, width: '100%', textAlign: 'left' }}>
                   {Object.entries(STATUS_COLOR).map(([s, c]) => (
-                    <div key={s} className="legend-item">
+                    <div key={s} className="legend-item" style={{ marginBottom: 8 }}>
                       <span className="legend-dot" style={{ background: c }} />
-                      <span className="mono" style={{ fontSize: '0.75rem', color: 'var(--gray-4)' }}>{s}</span>
+                      <span className="mono" style={{ fontSize: '0.7rem' }}>{s.toUpperCase()}</span>
                     </div>
                   ))}
                 </div>
@@ -138,6 +173,13 @@ export default function CalendarViewScreen() {
           </div>
         </div>
       </div>
+      {quizFor && (
+        <QuizModal 
+          topics={quizFor.topics} 
+          onComplete={onQuizComplete} 
+          onCancel={() => setQuizFor(null)} 
+        />
+      )}
     </div>
   );
 }

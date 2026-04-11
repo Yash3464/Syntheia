@@ -39,4 +39,13 @@ export const api = {
 
   getAvailableModules: () =>
     request('/learning-paths/modules/available'),
+
+  getQuizQuestions: (topics, count = 3) =>
+    request(`/quiz/questions?topics=${encodeURIComponent(topics.join(','))}&count=${count}`),
+
+  submitQuiz: (answers) =>
+    request('/quiz/submit', {
+      method: 'POST',
+      body: JSON.stringify(answers),
+    }),
 };

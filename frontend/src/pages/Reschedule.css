@@ -1,18 +1,60 @@
 .reschedule-screen { background: var(--black); }
-.reschedule-content { padding: 40px 24px 80px; max-width: 760px; }
-.reschedule-hero { margin-bottom: 40px; }
-.reschedule-form { margin-bottom: 24px; }
-.day-selector-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-.day-sel-btn {
-  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
-  background: var(--gray-2); border: 1px solid var(--gray-3); border-radius: var(--radius);
-  color: var(--gray-5); font-family: var(--font-mono); font-size: 0.8rem; cursor: pointer; transition: var(--transition);
+.reschedule-content { padding: 80px 24px; max-width: 800px; }
+.reschedule-hero { margin-bottom: 60px; }
+
+.day-selector-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); 
+  gap: 12px; 
+  margin-bottom: 24px; 
 }
-.day-sel-btn:hover { border-color: var(--yellow); color: var(--white); }
-.day-sel-btn.selected { background: rgba(255,59,59,0.12); border-color: var(--red); color: var(--red); }
-.selected-days { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px; background: var(--gray-2); border-radius: var(--radius); }
-.reschedule-result { text-align: center; padding: 48px 0; }
-.result-icon { width: 72px; height: 72px; background: var(--green); color: var(--black); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 24px; }
-.result-comparison { display: flex; align-items: center; justify-content: center; gap: 32px; margin-bottom: 32px; }
-.result-box { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.result-num { font-family: var(--font-display); font-weight: 900; font-size: 3.5rem; line-height: 1; color: var(--white); }
+
+.day-sel-btn {
+  aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gray-1); border: 1px solid var(--gray-2); border-radius: var(--radius);
+  color: var(--gray-4); font-family: var(--font-mono); font-size: 0.9rem; 
+  cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.day-sel-btn:hover { border-color: var(--white); color: var(--white); transform: scale(1.05); }
+.day-sel-btn.selected { background: var(--red); border-color: var(--red); color: var(--white); font-weight: 800; box-shadow: 0 0 15px rgba(255, 59, 59, 0.3); }
+
+.selected-days { 
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px; 
+  padding: 16px 20px; background: var(--gray-1); 
+  border: 1px solid var(--gray-2); border-radius: var(--radius);
+  margin-bottom: 24px;
+}
+
+.reschedule-result { 
+  text-align: center; padding: 60px 0; 
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-icon { 
+  width: 80px; height: 80px; background: var(--yellow); color: var(--black); 
+  border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+  font-size: 2rem; margin: 0 auto 32px; 
+}
+
+.result-comparison { 
+  display: flex; align-items: center; justify-content: center; gap: 40px; 
+  margin-bottom: 40px; 
+}
+
+.result-box { 
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  background: var(--gray-1); padding: 24px 40px; border-radius: var(--radius);
+  border: 1px solid var(--gray-2);
+}
+
+.result-num { 
+  font-family: var(--font-display); font-weight: 900; font-size: 4rem; 
+  line-height: 1; color: var(--white); 
+}

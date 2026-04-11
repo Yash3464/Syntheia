@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useApp } from '../context/AppContext';
 import { api } from '../services/api';
+import QuizModal from '../components/QuizModal';
 import './Dashboard.css';
 
 function fmt(min) {
@@ -14,6 +15,7 @@ export default function DashboardScreen() {
   const { activePlan } = state;
   const [progress, setProgress] = useState(null);
   const [completing, setCompleting] = useState(null);
+  const [quizFor, setQuizFor] = useState(null);
   const [error, setError] = useState('');
 
   const loadProgress = useCallback(async () => {
@@ -26,15 +28,21 @@ export default function DashboardScreen() {
 
   useEffect(() => { loadProgress(); }, [loadProgress]);
 
-  const handleComplete = async (dayNumber) => {
-    setCompleting(dayNumber);
+  const onQuizComplete = async () => {
+    const day = quizFor;
+    setQuizFor(null);
+    setCompleting(day.day_number);
     try {
-      await api.markDayCompleted(activePlan.plan_id, dayNumber);
+      await api.markDayCompleted(activePlan.plan_id, day.day_number);
       const updated = await api.getLearningPath(activePlan.plan_id);
       dispatch({ type: 'SET_PLAN', payload: updated });
       await loadProgress();
     } catch (e) { setError(e.message); }
     finally { setCompleting(null); }
+  };
+
+  const handleCompleteRequest = (day) => {
+    setQuizFor(day);
   };
 
   if (!activePlan) return <div className="loading-screen"><div className="spinner" /></div>;
@@ -106,7 +114,7 @@ export default function DashboardScreen() {
                 <div className="today-meta mono text-gray">Estimated: {fmt(today.estimated_time_minutes)}</div>
                 {today.status !== 'completed' ? (
                   <button className="btn btn-primary w-full" style={{ justifyContent: 'center', marginTop: 16 }}
-                    onClick={() => handleComplete(today.day_number)} disabled={completing === today.day_number}>
+                    onClick={() => handleCompleteRequest(today)} disabled={completing === today.day_number}>
                     {completing === today.day_number ? 'Saving...' : '✓ Mark Day Complete'}
                   </button>
                 ) : (
@@ -170,7 +178,15 @@ export default function DashboardScreen() {
             ))}
           </div>
         </div>
+        </div>
       </div>
+      {quizFor && (
+        <QuizModal 
+          topics={quizFor.topics} 
+          onComplete={onQuizComplete} 
+          onCancel={() => setQuizFor(null)} 
+        />
+      )}
     </div>
   );
 }
