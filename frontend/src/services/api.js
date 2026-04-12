@@ -1,14 +1,19 @@
 const BASE_URL = import.meta.env.VITE_API_URL || '/api/v1';
 
-async function request(path, options = {}) {
+async function request(path, options = {}, ignoreNotFound = false) {
   const res = await fetch(`${BASE_URL}${path}`, {
     headers: { 'Content-Type': 'application/json', ...options.headers },
     ...options,
   });
+
   if (!res.ok) {
+    if (res.status === 404 && ignoreNotFound) {
+      return null;
+    }
     const err = await res.json().catch(() => ({ detail: 'Unknown error' }));
     throw new Error(err.detail || 'Request failed');
   }
+
   return res.json();
 }
 
@@ -23,7 +28,7 @@ export const api = {
     request(`/learning-paths/${planId}`),
 
   getUserPlan: (userId) =>
-    request(`/learning-paths/user/${userId}`),
+    request(`/learning-paths/user/${userId}`, {}, true),
 
   getProgress: (planId) =>
     request(`/learning-paths/${planId}/progress`),

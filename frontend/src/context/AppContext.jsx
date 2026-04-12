@@ -35,6 +35,12 @@ export function AppProvider({ children }) {
   const navigate = (screen) => dispatch({ type: 'SET_SCREEN', payload: screen });
 
   useEffect(() => {
+    if (!supabase) {
+      console.error('Supabase client is not initialized. Check VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.');
+      dispatch({ type: 'SET_INITIALIZED' });
+      return;
+    }
+
     // 1. Initial Session Check
     const initSession = async () => {
       try {
@@ -62,7 +68,10 @@ export function AppProvider({ children }) {
           navigate('onboarding');
         }
       } catch (err) {
-        console.warn('No active plan for user or error:', err);
+        const message = err?.message || '';
+        if (!message.includes('No active plan found')) {
+          console.warn('Error fetching user plan:', err);
+        }
         navigate('onboarding');
       } finally {
         dispatch({ type: 'SET_INITIALIZED' });
@@ -85,6 +94,11 @@ export function AppProvider({ children }) {
   }, []);
 
   const signOut = async () => {
+    if (!supabase) {
+      console.error('Cannot sign out because Supabase client is not initialized.');
+      return;
+    }
+
     try {
       await supabase.auth.signOut();
       // onAuthStateChange handles the rest
