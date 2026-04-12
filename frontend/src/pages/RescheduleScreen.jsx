@@ -13,6 +13,7 @@ export default function RescheduleScreen() {
 
   if (!activePlan) return <div className="loading-screen"><div className="spinner" /></div>;
 
+  const missedTasks = activePlan.daily_tasks.filter(t => t.status === 'missed').map(t => t.day_number);
   const toggleDay = (num) => setMissedDays(prev =>
     prev.includes(num) ? prev.filter(d => d !== num) : [...prev, num]
   );
@@ -54,6 +55,14 @@ export default function RescheduleScreen() {
 
             <div className="reschedule-form card">
               <div className="mono text-gray" style={{ fontSize: '0.7rem', marginBottom: 16, letterSpacing: '0.1em' }}>SELECT MISSED DAYS</div>
+              {missedTasks.length > 0 && (
+                <div style={{ marginBottom: 16, display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+                  <span className="mono text-gray" style={{ fontSize: '0.75rem' }}>{missedTasks.length} day(s) already marked missed</span>
+                  <button className="btn btn-ghost" style={{ padding: '8px 14px', fontSize: '0.8rem' }} onClick={() => setMissedDays(missedTasks)}>
+                    Auto-fill missed days
+                  </button>
+                </div>
+              )}
               <div className="day-selector-grid">
                 {activePlan.daily_tasks?.filter(t => t.status !== 'completed').map(t => (
                   <button key={t.day_number} className={`day-sel-btn ${missedDays.includes(t.day_number) ? 'selected' : ''}`} onClick={() => toggleDay(t.day_number)}>

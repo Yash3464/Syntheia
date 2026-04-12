@@ -12,13 +12,6 @@ export default function AuthScreen() {
   const [error, setError] = useState("");
   const [info, setInfo] = useState("");
 
-  useEffect(() => {
-    (async () => {
-      const { data } = await supabase.auth.getSession();
-      if (data?.session?.user) navigate("onboarding");
-    })();
-  }, [navigate]);
-
   const submit = async (e) => {
     e.preventDefault();
     setError("");

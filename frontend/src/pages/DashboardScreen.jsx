@@ -30,6 +30,8 @@ export default function DashboardScreen() {
 
   const onQuizComplete = async () => {
     const day = quizFor;
+    if (!day) return;
+    
     setQuizFor(null);
     setCompleting(day.day_number);
     try {
@@ -37,15 +39,23 @@ export default function DashboardScreen() {
       const updated = await api.getLearningPath(activePlan.plan_id);
       dispatch({ type: 'SET_PLAN', payload: updated });
       await loadProgress();
-    } catch (e) { setError(e.message); }
-    finally { setCompleting(null); }
+    } catch (e) { 
+      setError(e.message); 
+    } finally { 
+      setCompleting(null); 
+    }
   };
 
   const handleCompleteRequest = (day) => {
     setQuizFor(day);
   };
 
-  if (!activePlan) return <div className="loading-screen"><div className="spinner" /></div>;
+  if (!activePlan) return (
+    <div className="loading-screen">
+      <div className="spinner" />
+      <p className="mono text-gray mt-16">LOADING YOUR JOURNEY...</p>
+    </div>
+  );
 
   const today = activePlan.daily_tasks?.find(t => t.status === 'pending') || activePlan.daily_tasks?.[0];
   const completedCount = activePlan.daily_tasks?.filter(t => t.status === 'completed').length || 0;
@@ -178,8 +188,8 @@ export default function DashboardScreen() {
             ))}
           </div>
         </div>
-        </div>
       </div>
+      
       {quizFor && (
         <QuizModal 
           topics={quizFor.topics} 

@@ -13,8 +13,11 @@ import './styles/globals.css';
 function Router() {
   const { state } = useApp();
 
+  if (!state.initialized || state.screen === 'splash') {
+    return <SplashScreen />;
+  }
+
   switch (state.screen) {
-    case 'splash': return <SplashScreen />;
     case 'welcome': return <WelcomeScreen />;
     case 'auth': return <AuthScreen />;
     case 'onboarding': return <OnboardingScreen />;

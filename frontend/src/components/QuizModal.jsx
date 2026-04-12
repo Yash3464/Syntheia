@@ -56,6 +56,16 @@ export default function QuizModal({ topics, onComplete, onCancel }) {
     </div>
   );
 
+  if (!questions.length) return (
+    <div className="modal-overlay">
+      <div className="modal-content card text-center">
+        <div className="mono text-red mb-8">QUIZ FAILED TO LOAD</div>
+        <p className="text-gray mb-24">{error || 'We were unable to fetch quiz questions right now. Please try again later or mark the day complete from the dashboard.'}</p>
+        <button className="btn btn-outline w-full justify-center" onClick={onCancel}>Close</button>
+      </div>
+    </div>
+  );
+
   if (result) return (
     <div className="modal-overlay">
       <div className="modal-content card text-center">

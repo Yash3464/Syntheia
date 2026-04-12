@@ -46,6 +46,14 @@ async def get_learning_path(plan_id: str, plan_service: PlanService = Depends(ge
     return plan
 
 
+@router.get("/user/{user_id}", response_model=LearningPath)
+async def get_user_plan(user_id: str, plan_service: PlanService = Depends(get_plan_service)):
+    plan = plan_service.get_user_plan(user_id)
+    if not plan:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"No active plan found for user {user_id}")
+    return plan
+
+
 @router.post("/{plan_id}/reschedule", response_model=LearningPath)
 async def reschedule_learning_path(
     plan_id: str,

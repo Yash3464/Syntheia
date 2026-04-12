@@ -22,6 +22,9 @@ export const api = {
   getLearningPath: (planId) =>
     request(`/learning-paths/${planId}`),
 
+  getUserPlan: (userId) =>
+    request(`/learning-paths/user/${userId}`),
+
   getProgress: (planId) =>
     request(`/learning-paths/${planId}/progress`),
 
@@ -41,10 +44,10 @@ export const api = {
     request('/learning-paths/modules/available'),
 
   getQuizQuestions: (topics, count = 3) =>
-    request(`/quiz/questions?topics=${encodeURIComponent(topics.join(','))}&count=${count}`),
+    request(`/quizzes/questions?topics=${encodeURIComponent(topics.join(','))}&count=${count}`),
 
   submitQuiz: (answers) =>
-    request('/quiz/submit', {
+    request('/quizzes/submit', {
       method: 'POST',
       body: JSON.stringify(answers),
     }),

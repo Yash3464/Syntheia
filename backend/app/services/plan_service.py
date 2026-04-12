@@ -4,6 +4,8 @@ Plan Service - Orchestrates plan generation, rescheduling, and tracking.
 
 from typing import Dict, List, Any, Optional
 from datetime import datetime
+import json
+import os
 
 from app.core.planner import LearningPlanner
 from app.core.rescheduler import PlanRescheduler, RescheduleRequest
@@ -22,7 +24,29 @@ class PlanService:
         self.planner = LearningPlanner()
         self.rescheduler = PlanRescheduler()
         self.ai_enhancer = AIEnhancer()
+        self.persistence_file = "plans.json"
         self.active_plans: Dict[str, LearningPath] = {}
+        self._load_plans()
+
+    def _save_plans(self):
+        """Save active plans to a JSON file."""
+        try:
+            data = {pid: plan.model_dump() for pid, plan in self.active_plans.items()}
+            with open(self.persistence_file, "w") as f:
+                json.dump(data, f, indent=2)
+        except Exception as e:
+            print(f"Error saving plans: {e}")
+
+    def _load_plans(self):
+        """Load active plans from a JSON file."""
+        if not os.path.exists(self.persistence_file):
+            return
+        try:
+            with open(self.persistence_file, "r") as f:
+                data = json.load(f)
+                self.active_plans = {pid: LearningPath(**p) for pid, p in data.items()}
+        except Exception as e:
+            print(f"Error loading plans: {e}")
     
     def create_learning_path(
         self,
@@ -97,6 +121,7 @@ class PlanService:
         
         # Store in active plans (in production, this would be in a database)
         self.active_plans[learning_path.plan_id] = learning_path
+        self._save_plans()
         
         return learning_path
     
@@ -138,6 +163,7 @@ class PlanService:
         # Update stored plan
         self.active_plans[plan_id] = updated_plan
         self.active_plans[plan_id].updated_at = datetime.now().isoformat()
+        self._save_plans()
         
         return updated_plan
     
@@ -188,6 +214,14 @@ class PlanService:
             "recommendations": recommendations[:3],  # Top 3 recommendations
             "pace_suggestion": pace_suggestion
         }
+
+    def get_user_plan(self, user_id: str) -> Optional[LearningPath]:
+        """Find the most recent active plan for a user ID."""
+        user_plans = [p for p in self.active_plans.values() if p.user_id == user_id]
+        if not user_plans:
+            return None
+        # Return the most recently updated one
+        return max(user_plans, key=lambda x: x.updated_at or x.start_date)
     
     def mark_day_completed(
         self,
@@ -206,6 +240,7 @@ class PlanService:
         
         plan = self.active_plans[plan_id]
         plan.mark_day_completed(day_number, actual_time_minutes)
+        self._save_plans()
         return True
     
     def get_available_modules(self) -> List[Dict[str, Any]]:

@@ -1,0 +1,154 @@
+{
+  "plan_20260412_150305": {
+    "id": null,
+    "user_id": "eb2143f0-57fe-4c1e-b1b5-e128a0d47d73",
+    "plan_id": "plan_20260412_150305",
+    "module_id": "python",
+    "level": "beginner",
+    "pace": "medium",
+    "start_date": "2026-04-12",
+    "target_end_date": "2026-04-27",
+    "actual_end_date": null,
+    "total_days": 8,
+    "total_hours": 8.0,
+    "completed_days": 0,
+    "completion_percentage": 0.0,
+    "daily_tasks": [
+      {
+        "day_number": 1,
+        "date": null,
+        "topic_ids": [
+          "py_basics_1"
+        ],
+        "topics": [
+          "Python Installation & Setup"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 2,
+        "date": null,
+        "topic_ids": [
+          "py_basics_2",
+          "py_basics_3"
+        ],
+        "topics": [
+          "Variables and Data Types",
+          "Basic Operators"
+        ],
+        "estimated_time_minutes": 75,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 3,
+        "date": null,
+        "topic_ids": [
+          "py_control_1"
+        ],
+        "topics": [
+          "Conditional Statements"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 4,
+        "date": null,
+        "topic_ids": [
+          "py_control_2"
+        ],
+        "topics": [
+          "Loops: For and While"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 5,
+        "date": null,
+        "topic_ids": [
+          "py_functions_1"
+        ],
+        "topics": [
+          "Functions Basics"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 6,
+        "date": null,
+        "topic_ids": [
+          "py_data_1"
+        ],
+        "topics": [
+          "Lists and Tuples"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 7,
+        "date": null,
+        "topic_ids": [
+          "py_data_2"
+        ],
+        "topics": [
+          "Dictionaries and Sets"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 8,
+        "date": null,
+        "topic_ids": [
+          "py_strings",
+          "py_basics_4"
+        ],
+        "topics": [
+          "String Operations",
+          "Basic Input/Output"
+        ],
+        "estimated_time_minutes": 75,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      }
+    ],
+    "is_active": true,
+    "created_at": "2026-04-12T15:03:05.977362",
+    "updated_at": "2026-04-12T15:03:05.977368"
+  }
+}

@@ -21,21 +21,31 @@ export default function CalendarViewScreen() {
   const [missedInput, setMissedInput] = useState([]);
   const [error, setError] = useState('');
 
-  if (!activePlan) return <div className="loading-screen"><div className="spinner" /></div>;
+  if (!activePlan) return (
+    <div className="loading-screen">
+      <div className="spinner" />
+      <p className="mono text-gray mt-16">LOADING CALENDAR...</p>
+    </div>
+  );
 
   const tasks = activePlan.daily_tasks || [];
 
   const onQuizComplete = async () => {
-    const dayNum = quizFor.day_number;
+    const day = quizFor;
+    if (!day) return;
+    
     setQuizFor(null);
     setCompleting(true);
     try {
-      await api.markDayCompleted(activePlan.plan_id, dayNum);
+      await api.markDayCompleted(activePlan.plan_id, day.day_number);
       const updated = await api.getLearningPath(activePlan.plan_id);
       dispatch({ type: 'SET_PLAN', payload: updated });
-      setSelected(updated.daily_tasks.find(t => t.day_number === dayNum));
-    } catch (e) { setError(e.message); }
-    finally { setCompleting(false); }
+      setSelected(updated.daily_tasks.find(t => t.day_number === day.day_number));
+    } catch (e) { 
+      setError(e.message); 
+    } finally { 
+      setCompleting(false); 
+    }
   };
 
   const handleCompleteRequest = (day) => {
@@ -53,7 +63,9 @@ export default function CalendarViewScreen() {
       dispatch({ type: 'SET_PLAN', payload: updated });
       setMissedInput([]);
       navigate('reschedule');
-    } catch (e) { setError(e.message); }
+    } catch (e) { 
+      setError(e.message); 
+    }
   };
 
   const start = new Date(activePlan.start_date);
@@ -173,6 +185,7 @@ export default function CalendarViewScreen() {
           </div>
         </div>
       </div>
+      
       {quizFor && (
         <QuizModal 
           topics={quizFor.topics} 
