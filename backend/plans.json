@@ -302,5 +302,1457 @@
     "is_active": true,
     "created_at": "2026-04-12T20:12:36.953957",
     "updated_at": "2026-04-12T20:12:36.953960"
+  },
+  "plan_20260414_162803": {
+    "id": null,
+    "user_id": "mock-user-123",
+    "plan_id": "plan_20260414_162803",
+    "module_id": "python",
+    "level": "intermediate",
+    "pace": "medium",
+    "start_date": "2026-04-14",
+    "target_end_date": "2026-04-26",
+    "actual_end_date": null,
+    "total_days": 5,
+    "total_hours": 7.8,
+    "completed_days": 0,
+    "completion_percentage": 0.0,
+    "daily_tasks": [
+      {
+        "day_number": 1,
+        "date": null,
+        "topic_ids": [
+          "py_oop_1",
+          "py_oop_2"
+        ],
+        "topics": [
+          "Classes and Objects",
+          "Inheritance and Polymorphism"
+        ],
+        "estimated_time_minutes": 120,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 2,
+        "date": null,
+        "topic_ids": [
+          "py_oop_3",
+          "py_advanced_1"
+        ],
+        "topics": [
+          "Encapsulation and Properties",
+          "List Comprehensions"
+        ],
+        "estimated_time_minutes": 75,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 3,
+        "date": null,
+        "topic_ids": [
+          "py_advanced_2",
+          "py_modules"
+        ],
+        "topics": [
+          "Lambda Functions",
+          "Modules and Packages"
+        ],
+        "estimated_time_minutes": 90,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 4,
+        "date": null,
+        "topic_ids": [
+          "py_files",
+          "py_exceptions"
+        ],
+        "topics": [
+          "File Handling",
+          "Exception Handling"
+        ],
+        "estimated_time_minutes": 105,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 5,
+        "date": null,
+        "topic_ids": [
+          "py_json",
+          "py_env"
+        ],
+        "topics": [
+          "Working with JSON",
+          "Virtual Environments"
+        ],
+        "estimated_time_minutes": 75,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      }
+    ],
+    "is_active": true,
+    "created_at": "2026-04-14T16:28:03.360557",
+    "updated_at": "2026-04-14T16:28:03.360559"
+  },
+  "plan_20260414_162853": {
+    "id": null,
+    "user_id": "mock-user-123",
+    "plan_id": "plan_20260414_162853",
+    "module_id": "python",
+    "level": "intermediate",
+    "pace": "medium",
+    "start_date": "2026-04-14",
+    "target_end_date": "2026-04-26",
+    "actual_end_date": null,
+    "total_days": 5,
+    "total_hours": 7.8,
+    "completed_days": 1,
+    "completion_percentage": 20.0,
+    "daily_tasks": [
+      {
+        "day_number": 1,
+        "date": null,
+        "topic_ids": [
+          "py_oop_1",
+          "py_oop_2"
+        ],
+        "topics": [
+          "Classes and Objects",
+          "Inheritance and Polymorphism"
+        ],
+        "estimated_time_minutes": 120,
+        "status": "completed",
+        "actual_time_minutes": null,
+        "completion_date": "2026-04-14T16:32:48.095291",
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 2,
+        "date": null,
+        "topic_ids": [
+          "py_oop_3",
+          "py_advanced_1"
+        ],
+        "topics": [
+          "Encapsulation and Properties",
+          "List Comprehensions"
+        ],
+        "estimated_time_minutes": 75,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 3,
+        "date": null,
+        "topic_ids": [
+          "py_advanced_2",
+          "py_modules"
+        ],
+        "topics": [
+          "Lambda Functions",
+          "Modules and Packages"
+        ],
+        "estimated_time_minutes": 90,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 4,
+        "date": null,
+        "topic_ids": [
+          "py_files",
+          "py_exceptions"
+        ],
+        "topics": [
+          "File Handling",
+          "Exception Handling"
+        ],
+        "estimated_time_minutes": 105,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 5,
+        "date": null,
+        "topic_ids": [
+          "py_json",
+          "py_env"
+        ],
+        "topics": [
+          "Working with JSON",
+          "Virtual Environments"
+        ],
+        "estimated_time_minutes": 75,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      }
+    ],
+    "is_active": true,
+    "created_at": "2026-04-14T16:28:53.047021",
+    "updated_at": "2026-04-14T16:34:25.421157"
+  },
+  "plan_20260414_224823": {
+    "id": null,
+    "user_id": "mock-user-123",
+    "plan_id": "plan_20260414_224823",
+    "module_id": "python",
+    "level": "beginner",
+    "pace": "medium",
+    "start_date": "2026-04-14",
+    "target_end_date": "2026-04-29",
+    "actual_end_date": null,
+    "total_days": 8,
+    "total_hours": 8.0,
+    "completed_days": 0,
+    "completion_percentage": 0.0,
+    "daily_tasks": [
+      {
+        "day_number": 1,
+        "date": null,
+        "topic_ids": [
+          "py_basics_1"
+        ],
+        "topics": [
+          "Python Installation & Setup"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 2,
+        "date": null,
+        "topic_ids": [
+          "py_basics_2",
+          "py_basics_3"
+        ],
+        "topics": [
+          "Variables and Data Types",
+          "Basic Operators"
+        ],
+        "estimated_time_minutes": 75,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 3,
+        "date": null,
+        "topic_ids": [
+          "py_control_1"
+        ],
+        "topics": [
+          "Conditional Statements"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 4,
+        "date": null,
+        "topic_ids": [
+          "py_control_2"
+        ],
+        "topics": [
+          "Loops: For and While"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 5,
+        "date": null,
+        "topic_ids": [
+          "py_functions_1"
+        ],
+        "topics": [
+          "Functions Basics"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 6,
+        "date": null,
+        "topic_ids": [
+          "py_data_1"
+        ],
+        "topics": [
+          "Lists and Tuples"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 7,
+        "date": null,
+        "topic_ids": [
+          "py_data_2"
+        ],
+        "topics": [
+          "Dictionaries and Sets"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 8,
+        "date": null,
+        "topic_ids": [
+          "py_strings",
+          "py_basics_4"
+        ],
+        "topics": [
+          "String Operations",
+          "Basic Input/Output"
+        ],
+        "estimated_time_minutes": 75,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      }
+    ],
+    "is_active": true,
+    "created_at": "2026-04-14T22:48:23.273425",
+    "updated_at": "2026-04-14T22:48:23.273433"
+  },
+  "plan_20260415_230829": {
+    "id": null,
+    "user_id": "mock-user-123",
+    "plan_id": "plan_20260415_230829",
+    "module_id": "python",
+    "level": "beginner",
+    "pace": "slow",
+    "start_date": "2026-04-15",
+    "target_end_date": "2026-05-02",
+    "actual_end_date": null,
+    "total_days": 10,
+    "total_hours": 8.0,
+    "completed_days": 0,
+    "completion_percentage": 0.0,
+    "daily_tasks": [
+      {
+        "day_number": 1,
+        "date": null,
+        "topic_ids": [
+          "py_basics_1"
+        ],
+        "topics": [
+          "Python Installation & Setup"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 2,
+        "date": null,
+        "topic_ids": [
+          "py_basics_2"
+        ],
+        "topics": [
+          "Variables and Data Types"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 3,
+        "date": null,
+        "topic_ids": [
+          "py_basics_3"
+        ],
+        "topics": [
+          "Basic Operators"
+        ],
+        "estimated_time_minutes": 30,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 4,
+        "date": null,
+        "topic_ids": [
+          "py_control_1"
+        ],
+        "topics": [
+          "Conditional Statements"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 5,
+        "date": null,
+        "topic_ids": [
+          "py_control_2"
+        ],
+        "topics": [
+          "Loops: For and While"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 6,
+        "date": null,
+        "topic_ids": [
+          "py_functions_1"
+        ],
+        "topics": [
+          "Functions Basics"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 7,
+        "date": null,
+        "topic_ids": [
+          "py_data_1"
+        ],
+        "topics": [
+          "Lists and Tuples"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 8,
+        "date": null,
+        "topic_ids": [
+          "py_data_2"
+        ],
+        "topics": [
+          "Dictionaries and Sets"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 9,
+        "date": null,
+        "topic_ids": [
+          "py_strings"
+        ],
+        "topics": [
+          "String Operations"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 10,
+        "date": null,
+        "topic_ids": [
+          "py_basics_4"
+        ],
+        "topics": [
+          "Basic Input/Output"
+        ],
+        "estimated_time_minutes": 30,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      }
+    ],
+    "is_active": true,
+    "created_at": "2026-04-15T23:08:29.236520",
+    "updated_at": "2026-04-15T23:08:29.236525"
+  },
+  "plan_20260418_212643": {
+    "id": null,
+    "user_id": "mock-user-123",
+    "plan_id": "plan_20260418_212643",
+    "module_id": "python",
+    "level": "intermediate",
+    "pace": "slow",
+    "start_date": "2026-04-18",
+    "target_end_date": "2026-05-05",
+    "actual_end_date": null,
+    "total_days": 10,
+    "total_hours": 7.8,
+    "completed_days": 0,
+    "completion_percentage": 0.0,
+    "daily_tasks": [
+      {
+        "day_number": 1,
+        "date": null,
+        "topic_ids": [
+          "py_oop_1"
+        ],
+        "topics": [
+          "Classes and Objects"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 2,
+        "date": null,
+        "topic_ids": [
+          "py_oop_2"
+        ],
+        "topics": [
+          "Inheritance and Polymorphism"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 3,
+        "date": null,
+        "topic_ids": [
+          "py_oop_3"
+        ],
+        "topics": [
+          "Encapsulation and Properties"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 4,
+        "date": null,
+        "topic_ids": [
+          "py_advanced_1"
+        ],
+        "topics": [
+          "List Comprehensions"
+        ],
+        "estimated_time_minutes": 30,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 5,
+        "date": null,
+        "topic_ids": [
+          "py_advanced_2"
+        ],
+        "topics": [
+          "Lambda Functions"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 6,
+        "date": null,
+        "topic_ids": [
+          "py_modules"
+        ],
+        "topics": [
+          "Modules and Packages"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 7,
+        "date": null,
+        "topic_ids": [
+          "py_files"
+        ],
+        "topics": [
+          "File Handling"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 8,
+        "date": null,
+        "topic_ids": [
+          "py_exceptions"
+        ],
+        "topics": [
+          "Exception Handling"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 9,
+        "date": null,
+        "topic_ids": [
+          "py_json"
+        ],
+        "topics": [
+          "Working with JSON"
+        ],
+        "estimated_time_minutes": 30,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 10,
+        "date": null,
+        "topic_ids": [
+          "py_env"
+        ],
+        "topics": [
+          "Virtual Environments"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      }
+    ],
+    "is_active": true,
+    "created_at": "2026-04-18T21:26:43.820230",
+    "updated_at": "2026-04-18T21:26:43.820234"
+  },
+  "plan_20260418_212712": {
+    "id": null,
+    "user_id": "mock-user-123",
+    "plan_id": "plan_20260418_212712",
+    "module_id": "python",
+    "level": "beginner",
+    "pace": "slow",
+    "start_date": "2026-04-18",
+    "target_end_date": "2026-05-05",
+    "actual_end_date": null,
+    "total_days": 10,
+    "total_hours": 8.0,
+    "completed_days": 0,
+    "completion_percentage": 0.0,
+    "daily_tasks": [
+      {
+        "day_number": 1,
+        "date": null,
+        "topic_ids": [
+          "py_basics_1"
+        ],
+        "topics": [
+          "Python Installation & Setup"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 2,
+        "date": null,
+        "topic_ids": [
+          "py_basics_2"
+        ],
+        "topics": [
+          "Variables and Data Types"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 3,
+        "date": null,
+        "topic_ids": [
+          "py_basics_3"
+        ],
+        "topics": [
+          "Basic Operators"
+        ],
+        "estimated_time_minutes": 30,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 4,
+        "date": null,
+        "topic_ids": [
+          "py_control_1"
+        ],
+        "topics": [
+          "Conditional Statements"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 5,
+        "date": null,
+        "topic_ids": [
+          "py_control_2"
+        ],
+        "topics": [
+          "Loops: For and While"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 6,
+        "date": null,
+        "topic_ids": [
+          "py_functions_1"
+        ],
+        "topics": [
+          "Functions Basics"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 7,
+        "date": null,
+        "topic_ids": [
+          "py_data_1"
+        ],
+        "topics": [
+          "Lists and Tuples"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 8,
+        "date": null,
+        "topic_ids": [
+          "py_data_2"
+        ],
+        "topics": [
+          "Dictionaries and Sets"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 9,
+        "date": null,
+        "topic_ids": [
+          "py_strings"
+        ],
+        "topics": [
+          "String Operations"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 10,
+        "date": null,
+        "topic_ids": [
+          "py_basics_4"
+        ],
+        "topics": [
+          "Basic Input/Output"
+        ],
+        "estimated_time_minutes": 30,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      }
+    ],
+    "is_active": true,
+    "created_at": "2026-04-18T21:27:12.463524",
+    "updated_at": "2026-04-18T21:27:12.463533"
+  },
+  "plan_20260418_214210": {
+    "id": null,
+    "user_id": "mock-user-123",
+    "plan_id": "plan_20260418_214210",
+    "module_id": "python",
+    "level": "beginner",
+    "pace": "slow",
+    "start_date": "2026-04-18",
+    "target_end_date": "2026-05-05",
+    "actual_end_date": null,
+    "total_days": 10,
+    "total_hours": 8.0,
+    "completed_days": 0,
+    "completion_percentage": 0.0,
+    "daily_tasks": [
+      {
+        "day_number": 1,
+        "date": null,
+        "topic_ids": [
+          "py_basics_1"
+        ],
+        "topics": [
+          "Python Installation & Setup"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 2,
+        "date": null,
+        "topic_ids": [
+          "py_basics_2"
+        ],
+        "topics": [
+          "Variables and Data Types"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 3,
+        "date": null,
+        "topic_ids": [
+          "py_basics_3"
+        ],
+        "topics": [
+          "Basic Operators"
+        ],
+        "estimated_time_minutes": 30,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 4,
+        "date": null,
+        "topic_ids": [
+          "py_control_1"
+        ],
+        "topics": [
+          "Conditional Statements"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 5,
+        "date": null,
+        "topic_ids": [
+          "py_control_2"
+        ],
+        "topics": [
+          "Loops: For and While"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 6,
+        "date": null,
+        "topic_ids": [
+          "py_functions_1"
+        ],
+        "topics": [
+          "Functions Basics"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 7,
+        "date": null,
+        "topic_ids": [
+          "py_data_1"
+        ],
+        "topics": [
+          "Lists and Tuples"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 8,
+        "date": null,
+        "topic_ids": [
+          "py_data_2"
+        ],
+        "topics": [
+          "Dictionaries and Sets"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 9,
+        "date": null,
+        "topic_ids": [
+          "py_strings"
+        ],
+        "topics": [
+          "String Operations"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 10,
+        "date": null,
+        "topic_ids": [
+          "py_basics_4"
+        ],
+        "topics": [
+          "Basic Input/Output"
+        ],
+        "estimated_time_minutes": 30,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      }
+    ],
+    "is_active": true,
+    "created_at": "2026-04-18T21:42:10.480168",
+    "updated_at": "2026-04-18T22:12:40.980983"
+  },
+  "plan_20260418_221333": {
+    "id": null,
+    "user_id": "mock-user-123",
+    "plan_id": "plan_20260418_221333",
+    "module_id": "python",
+    "level": "beginner",
+    "pace": "slow",
+    "start_date": "2026-04-18",
+    "target_end_date": "2026-05-05",
+    "actual_end_date": null,
+    "total_days": 10,
+    "total_hours": 8.0,
+    "completed_days": 0,
+    "completion_percentage": 0.0,
+    "daily_tasks": [
+      {
+        "day_number": 1,
+        "date": null,
+        "topic_ids": [
+          "py_basics_1"
+        ],
+        "topics": [
+          "Python Installation & Setup"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 2,
+        "date": null,
+        "topic_ids": [
+          "py_basics_2"
+        ],
+        "topics": [
+          "Variables and Data Types"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 3,
+        "date": null,
+        "topic_ids": [
+          "py_basics_3"
+        ],
+        "topics": [
+          "Basic Operators"
+        ],
+        "estimated_time_minutes": 30,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 4,
+        "date": null,
+        "topic_ids": [
+          "py_control_1"
+        ],
+        "topics": [
+          "Conditional Statements"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 5,
+        "date": null,
+        "topic_ids": [
+          "py_control_2"
+        ],
+        "topics": [
+          "Loops: For and While"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 6,
+        "date": null,
+        "topic_ids": [
+          "py_functions_1"
+        ],
+        "topics": [
+          "Functions Basics"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 7,
+        "date": null,
+        "topic_ids": [
+          "py_data_1"
+        ],
+        "topics": [
+          "Lists and Tuples"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 8,
+        "date": null,
+        "topic_ids": [
+          "py_data_2"
+        ],
+        "topics": [
+          "Dictionaries and Sets"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 9,
+        "date": null,
+        "topic_ids": [
+          "py_strings"
+        ],
+        "topics": [
+          "String Operations"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 10,
+        "date": null,
+        "topic_ids": [
+          "py_basics_4"
+        ],
+        "topics": [
+          "Basic Input/Output"
+        ],
+        "estimated_time_minutes": 30,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      }
+    ],
+    "is_active": true,
+    "created_at": "2026-04-18T22:13:33.097026",
+    "updated_at": "2026-04-18T22:13:33.097031"
+  },
+  "plan_20260418_234125": {
+    "id": null,
+    "user_id": "mock-user-1776535852253",
+    "plan_id": "plan_20260418_234125",
+    "module_id": "python",
+    "level": "beginner",
+    "pace": "slow",
+    "start_date": "2026-04-18",
+    "target_end_date": "2026-05-05",
+    "actual_end_date": null,
+    "total_days": 10,
+    "total_hours": 8.0,
+    "completed_days": 1,
+    "completion_percentage": 10.0,
+    "daily_tasks": [
+      {
+        "day_number": 1,
+        "date": null,
+        "topic_ids": [
+          "py_basics_1"
+        ],
+        "topics": [
+          "Python Installation & Setup"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "completed",
+        "actual_time_minutes": null,
+        "completion_date": "2026-04-18T23:42:05.388562",
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 2,
+        "date": null,
+        "topic_ids": [
+          "py_basics_2"
+        ],
+        "topics": [
+          "Variables and Data Types"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 3,
+        "date": null,
+        "topic_ids": [
+          "py_basics_3"
+        ],
+        "topics": [
+          "Basic Operators"
+        ],
+        "estimated_time_minutes": 30,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 4,
+        "date": null,
+        "topic_ids": [
+          "py_control_1"
+        ],
+        "topics": [
+          "Conditional Statements"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 5,
+        "date": null,
+        "topic_ids": [
+          "py_control_2"
+        ],
+        "topics": [
+          "Loops: For and While"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 6,
+        "date": null,
+        "topic_ids": [
+          "py_functions_1"
+        ],
+        "topics": [
+          "Functions Basics"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 7,
+        "date": null,
+        "topic_ids": [
+          "py_data_1"
+        ],
+        "topics": [
+          "Lists and Tuples"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 8,
+        "date": null,
+        "topic_ids": [
+          "py_data_2"
+        ],
+        "topics": [
+          "Dictionaries and Sets"
+        ],
+        "estimated_time_minutes": 60,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 9,
+        "date": null,
+        "topic_ids": [
+          "py_strings"
+        ],
+        "topics": [
+          "String Operations"
+        ],
+        "estimated_time_minutes": 45,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      },
+      {
+        "day_number": 10,
+        "date": null,
+        "topic_ids": [
+          "py_basics_4"
+        ],
+        "topics": [
+          "Basic Input/Output"
+        ],
+        "estimated_time_minutes": 30,
+        "status": "pending",
+        "actual_time_minutes": null,
+        "completion_date": null,
+        "notes": "",
+        "resources": []
+      }
+    ],
+    "is_active": true,
+    "created_at": "2026-04-18T23:41:25.011077",
+    "updated_at": "2026-04-18T23:41:25.011082"
   }
 }

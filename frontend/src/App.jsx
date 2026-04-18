@@ -8,6 +8,7 @@ import DashboardScreen from './pages/DashboardScreen';
 import CalendarViewScreen from './pages/CalendarViewScreen';
 import ProgressScreen from './pages/ProgressScreen';
 import RescheduleScreen from './pages/RescheduleScreen';
+import TutorScreen from './pages/TutorScreen';
 import './styles/globals.css';
 
 function Router() {
@@ -26,6 +27,7 @@ function Router() {
     case 'calendar': return <CalendarViewScreen />;
     case 'progress': return <ProgressScreen />;
     case 'reschedule': return <RescheduleScreen />;
+    case 'tutor': return <TutorScreen />;
     default: return <WelcomeScreen />;
   }
 }

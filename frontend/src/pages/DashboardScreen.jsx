@@ -70,6 +70,7 @@ export default function DashboardScreen() {
           <button className="nav-link active">Dashboard</button>
           <button className="nav-link" onClick={() => navigate('calendar')}>Calendar</button>
           <button className="nav-link" onClick={() => navigate('progress')}>Progress</button>
+          <button className="nav-link" onClick={() => navigate('tutor')}>AI Tutor</button>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button className="btn btn-ghost mono" onClick={() => navigate('welcome')} style={{ fontSize: '0.8rem' }}>↩ Home</button>

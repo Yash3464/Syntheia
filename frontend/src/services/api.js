@@ -56,4 +56,10 @@ export const api = {
       method: 'POST',
       body: JSON.stringify(answers),
     }),
+
+  sendChatMessage: (messages) =>
+    request('/chat/tutor', {
+      method: 'POST',
+      body: JSON.stringify({ messages }),
+    }),
 };
