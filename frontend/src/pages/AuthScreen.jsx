@@ -30,15 +30,11 @@ export default function AuthScreen() {
           setMode("signin");
           return;
         }
-
-        navigate("onboarding");
         return;
       }
 
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
-
-      navigate("onboarding");
     } catch (e) {
       setError(e?.message || "Auth failed");
     } finally {
