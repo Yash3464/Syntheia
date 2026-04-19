@@ -19,6 +19,7 @@ export default function AuthScreen() {
     setLoading(true);
 
     try {
+      if (!supabase) throw new Error("Supabase client is not initialized. Please check your environment variables and restart the app.");
       if (!email || !password) throw new Error("Email and password are required.");
 
       if (mode === "signup") {

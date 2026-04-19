@@ -15,4 +15,13 @@ if (!supabaseUrl || !supabaseAnonKey) {
   }
 }
 
-export { supabase };
+function ensureSupabase() {
+  if (!supabase) {
+    throw new Error(
+      'Supabase client is not initialized. Check VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in frontend/.env.local.'
+    );
+  }
+  return supabase;
+}
+
+export { supabase, ensureSupabase };

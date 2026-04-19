@@ -57,6 +57,10 @@ export default function OnboardingScreen() {
   };
 
   const requireAuthUser = async () => {
+    if (!supabase) {
+      throw new Error('Supabase client is not initialized. Please check your frontend environment variables.');
+    }
+
     const { data, error } = await supabase.auth.getUser();
     if (error) throw error;
     const user = data?.user ?? null;
@@ -68,6 +72,10 @@ export default function OnboardingScreen() {
   };
 
   const saveProfileToSupabase = async (authUser) => {
+    if (!supabase) {
+      throw new Error('Supabase client is not initialized. Please check your frontend environment variables.');
+    }
+
     const payload = {
       id: authUser.id,
       email: (email || authUser.email || '').trim() || null,

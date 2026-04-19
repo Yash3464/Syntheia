@@ -44,6 +44,11 @@ export default function OnboardingScreen() {
   const [sessionUser, setSessionUser] = useState(null);
 
   useEffect(() => {
+    if (!supabase) {
+      setError('Supabase client is not initialized. Please check your frontend environment variables.');
+      return;
+    }
+
     (async () => {
       const { data, error } = await supabase.auth.getUser();
       if (error) {
@@ -74,6 +79,10 @@ export default function OnboardingScreen() {
     setLoading(true);
     setError('');
     try {
+      if (!supabase) {
+        throw new Error('Supabase client is not initialized. Please check your frontend environment variables.');
+      }
+
       // 1) Require Supabase Auth user (so profiles + user_id are real)
       const { data: userRes, error: userErr } = await supabase.auth.getUser();
       if (userErr) throw userErr;
