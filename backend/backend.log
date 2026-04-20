@@ -1,0 +1,154 @@
+/Users/halfcuptea/Documents/dev/Syntheia/Syntheia/backend/app/api/endpoints/chat.py:5: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+INFO:     Started server process [34384]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+🔧 Added /Users/halfcuptea/Documents/dev/Syntheia/Syntheia to sys.path
+🚀 Starting Syntheia Learning Path Generator...
+📚 Available modules: Python
+🎯 Features: Personalized planning, intelligent rescheduling, AI recommendations
+INFO:     127.0.0.1:62843 - "GET /api/v1/learning-paths/modules/available HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62862 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62865 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62870 - "GET /api/v1/quizzes/questions?topics=Python%20Installation%20%26%20Setup&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62872 - "GET /api/v1/quizzes/questions?topics=Python%20Installation%20%26%20Setup&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62876 - "POST /api/v1/quizzes/submit HTTP/1.1" 200 OK
+⚠️ Background sync failed (Silent): {'message': "Could not find the 'completion_percentage' column of 'learning_paths' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+INFO:     127.0.0.1:62879 - "POST /api/v1/learning-paths/plan_20260420_233538/days/1/complete HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62883 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62893 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62896 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62901 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62904 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62913 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62915 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+🤖 AI attempting with model: gemini-flash-latest
+✅ AI Success with gemini-flash-latest
+INFO:     127.0.0.1:62918 - "POST /api/v1/chat/tutor HTTP/1.1" 200 OK
+🤖 AI attempting with model: gemini-flash-latest
+✅ AI Success with gemini-flash-latest
+INFO:     127.0.0.1:62925 - "POST /api/v1/chat/tutor HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62928 - "GET /api/v1/quizzes/questions?topics=Variables%20and%20Data%20Types%2CBasic%20Operators&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62931 - "GET /api/v1/quizzes/questions?topics=Variables%20and%20Data%20Types%2CBasic%20Operators&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62937 - "POST /api/v1/quizzes/submit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62940 - "GET /api/v1/quizzes/questions?topics=Variables%20and%20Data%20Types%2CBasic%20Operators&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62943 - "GET /api/v1/quizzes/questions?topics=Variables%20and%20Data%20Types%2CBasic%20Operators&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62948 - "POST /api/v1/quizzes/submit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62953 - "GET /api/v1/quizzes/questions?topics=Variables%20and%20Data%20Types%2CBasic%20Operators&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62956 - "GET /api/v1/quizzes/questions?topics=Variables%20and%20Data%20Types%2CBasic%20Operators&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62960 - "POST /api/v1/quizzes/submit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62975 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62979 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62987 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62992 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62999 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63003 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63007 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63011 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63017 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63021 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63039 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63042 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63074 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63077 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63079 - "GET /api/v1/quizzes/questions?topics=Variables%20and%20Data%20Types%2CBasic%20Operators&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63081 - "GET /api/v1/quizzes/questions?topics=Variables%20and%20Data%20Types%2CBasic%20Operators&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63084 - "POST /api/v1/quizzes/submit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63087 - "GET /api/v1/quizzes/questions?topics=Variables%20and%20Data%20Types%2CBasic%20Operators&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63090 - "GET /api/v1/quizzes/questions?topics=Variables%20and%20Data%20Types%2CBasic%20Operators&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63093 - "POST /api/v1/quizzes/submit HTTP/1.1" 200 OK
+⚠️ Background sync failed (Silent): {'message': "Could not find the 'completion_percentage' column of 'learning_paths' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+INFO:     127.0.0.1:63096 - "POST /api/v1/learning-paths/plan_20260420_233538/days/2/complete HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63100 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/pydantic/main.py:464: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='status', input_value='pending', input_type=str])
+  return self.__pydantic_serializer__.to_python(
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/pydantic/type_adapter.py:672: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `enum` - serialized value may not be as expected [field_name='status', input_value='pending', input_type=str])
+  return self.serializer.to_json(
+⚠️ Background sync failed (Reschedule): {'message': "Could not find the 'completion_percentage' column of 'learning_paths' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+INFO:     127.0.0.1:63105 - "POST /api/v1/learning-paths/plan_20260420_233538/reschedule HTTP/1.1" 200 OK
+⚠️ Background sync failed (Reschedule): {'message': "Could not find the 'completion_percentage' column of 'learning_paths' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+INFO:     127.0.0.1:63109 - "POST /api/v1/learning-paths/plan_20260420_233538/reschedule HTTP/1.1" 200 OK
+⚠️ Background sync failed (Reschedule): {'message': "Could not find the 'completion_percentage' column of 'learning_paths' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+INFO:     127.0.0.1:63114 - "POST /api/v1/learning-paths/plan_20260420_233538/reschedule HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63117 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63120 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63123 - "GET /api/v1/quizzes/questions?topics=Conditional%20Statements&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63126 - "GET /api/v1/quizzes/questions?topics=Conditional%20Statements&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63129 - "GET /api/v1/quizzes/questions?topics=Conditional%20Statements&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63132 - "GET /api/v1/quizzes/questions?topics=Conditional%20Statements&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63135 - "POST /api/v1/quizzes/submit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63140 - "GET /api/v1/quizzes/questions?topics=Conditional%20Statements&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63143 - "GET /api/v1/quizzes/questions?topics=Conditional%20Statements&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63146 - "POST /api/v1/quizzes/submit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63149 - "GET /api/v1/quizzes/questions?topics=Conditional%20Statements&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63152 - "GET /api/v1/quizzes/questions?topics=Conditional%20Statements&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63161 - "POST /api/v1/quizzes/submit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63166 - "GET /api/v1/quizzes/questions?topics=Conditional%20Statements&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63169 - "GET /api/v1/quizzes/questions?topics=Conditional%20Statements&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63174 - "POST /api/v1/quizzes/submit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63177 - "GET /api/v1/quizzes/questions?topics=Conditional%20Statements&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63180 - "GET /api/v1/quizzes/questions?topics=Conditional%20Statements&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63183 - "POST /api/v1/quizzes/submit HTTP/1.1" 200 OK
+⚠️ Background sync failed (Silent): {'message': "Could not find the 'completion_percentage' column of 'learning_paths' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+INFO:     127.0.0.1:63186 - "POST /api/v1/learning-paths/plan_20260420_233538/days/3/complete HTTP/1.1" 200 OK
+⚠️ Background sync failed (Reschedule): {'message': "Could not find the 'completion_percentage' column of 'learning_paths' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+INFO:     127.0.0.1:63190 - "POST /api/v1/learning-paths/plan_20260420_233538/reschedule HTTP/1.1" 200 OK
+⚠️ Background sync failed (Reschedule): {'message': "Could not find the 'completion_percentage' column of 'learning_paths' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+INFO:     127.0.0.1:63194 - "POST /api/v1/learning-paths/plan_20260420_233538/reschedule HTTP/1.1" 200 OK
+⚠️ Background sync failed (Reschedule): {'message': "Could not find the 'completion_percentage' column of 'learning_paths' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+INFO:     127.0.0.1:63197 - "POST /api/v1/learning-paths/plan_20260420_233538/reschedule HTTP/1.1" 200 OK
+⚠️ Background sync failed (Reschedule): {'message': "Could not find the 'completion_percentage' column of 'learning_paths' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+INFO:     127.0.0.1:63202 - "POST /api/v1/learning-paths/plan_20260420_233538/reschedule HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63208 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63212 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63215 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63219 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+🤖 AI attempting with model: gemini-flash-latest
+✅ AI Success with gemini-flash-latest
+INFO:     127.0.0.1:63222 - "POST /api/v1/chat/tutor HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63228 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63231 - "GET /api/v1/learning-paths/plan_20260420_233538/progress HTTP/1.1" 200 OK
+📊 Attempting to save plan plan_20260420_235423 to Supabase...
+✅ Plan saved successfully to Supabase.
+INFO:     127.0.0.1:63248 - "POST /api/v1/learning-paths/?module_id=python&level=beginner&pace=medium HTTP/1.1" 201 Created
+INFO:     127.0.0.1:63252 - "GET /api/v1/learning-paths/plan_20260420_235423/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63255 - "GET /api/v1/learning-paths/plan_20260420_235423/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63258 - "GET /api/v1/quizzes/questions?topics=Python%20Installation%20%26%20Setup&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63261 - "GET /api/v1/quizzes/questions?topics=Python%20Installation%20%26%20Setup&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63265 - "POST /api/v1/quizzes/submit HTTP/1.1" 200 OK
+⚠️ Background sync failed (Silent): {'message': "Could not find the 'completion_percentage' column of 'learning_paths' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+INFO:     127.0.0.1:63268 - "POST /api/v1/learning-paths/plan_20260420_235423/days/1/complete HTTP/1.1" 200 OK
+⚠️ Background sync failed (Reschedule): {'message': "Could not find the 'completion_percentage' column of 'learning_paths' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+INFO:     127.0.0.1:63272 - "POST /api/v1/learning-paths/plan_20260420_235423/reschedule HTTP/1.1" 200 OK
+⚠️ Background sync failed (Reschedule): {'message': "Could not find the 'completion_percentage' column of 'learning_paths' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+INFO:     127.0.0.1:63276 - "POST /api/v1/learning-paths/plan_20260420_235423/reschedule HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63279 - "GET /api/v1/learning-paths/plan_20260420_235423/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63282 - "GET /api/v1/learning-paths/plan_20260420_235423/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63285 - "GET /api/v1/learning-paths/plan_20260420_235423/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63288 - "GET /api/v1/learning-paths/plan_20260420_235423/progress HTTP/1.1" 200 OK
+🤖 AI attempting with model: gemini-flash-latest
+✅ AI Success with gemini-flash-latest
+INFO:     127.0.0.1:63295 - "POST /api/v1/chat/tutor HTTP/1.1" 200 OK
+🤖 AI attempting with model: gemini-flash-latest
+✅ AI Success with gemini-flash-latest
+INFO:     127.0.0.1:63300 - "POST /api/v1/chat/tutor HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63306 - "GET /api/v1/quizzes/questions?topics=Variables%20and%20Data%20Types%2CBasic%20Operators&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63309 - "GET /api/v1/quizzes/questions?topics=Variables%20and%20Data%20Types%2CBasic%20Operators&count=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63312 - "GET /api/v1/learning-paths/plan_20260420_235423/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63316 - "GET /api/v1/learning-paths/plan_20260420_235423/progress HTTP/1.1" 200 OK
+⚠️ Background sync failed (Reschedule): {'message': "Could not find the 'completion_percentage' column of 'learning_paths' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+INFO:     127.0.0.1:63319 - "POST /api/v1/learning-paths/plan_20260420_235423/reschedule HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64236 - "GET /api/v1/learning-paths/plan_20260420_235423/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64240 - "GET /api/v1/learning-paths/plan_20260420_235423/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64488 - "GET /api/v1/learning-paths/plan_20260420_235423/progress HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64492 - "GET /api/v1/learning-paths/plan_20260420_235423/progress HTTP/1.1" 200 OK

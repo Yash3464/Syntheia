@@ -134,7 +134,7 @@ class QuizService:
         """
         correct_count = sum(1 for a in answers if a['selected'] == a['correct'])
         total = len(answers)
-        score_pct = (correct_count / total * 100) if total > 0 else 0
+        score_pct = round(correct_count / total * 100, 1) if total > 0 else 0
         
         passed = score_pct >= 60
         

@@ -23,7 +23,7 @@ class DailyTask(BaseModel):
 
 class LearningPlan(BaseModel):
     """Complete learning plan for a user."""
-    plan_id: str = Field(default_factory=lambda: f"plan_{datetime.now().strftime('%Y%m%d_%H%M%S')}")
+    plan_id: str = Field(default_factory=lambda: f"plan_{datetime.now().strftime('%Y%m%d_%H%M%S')}".strip())
     user_id: Optional[str] = None
     module_id: str
     level: str  # beginner, intermediate, advanced

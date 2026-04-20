@@ -73,6 +73,15 @@ export default function QuizModal({ topics, onComplete, onCancel }) {
         <h2 style={{ fontSize: '3rem', marginBottom: 12 }}>{result.score_percentage}%</h2>
         <p className="mb-24 text-gray">{result.passed ? 'Excellent! You have mastered today\'s topics.' : 'You didn\'t pass this time, but keep learning!'}</p>
         
+        {!result.passed && (
+          <div className="mb-32 p-16 bg-red-bg rounded text-left">
+            <div className="mono text-red mb-8" style={{ fontSize: '0.7rem' }}>TOPICS TO REVIEW</div>
+            <ul className="list-disc pl-16 text-gray-5" style={{ fontSize: '0.85rem' }}>
+              {topics.map(t => <li key={t}>{t}</li>)}
+            </ul>
+          </div>
+        )}
+
         {result.passed ? (
           <button className="btn btn-primary w-full justify-center" onClick={onComplete}>Continue to Mark Complete</button>
         ) : (

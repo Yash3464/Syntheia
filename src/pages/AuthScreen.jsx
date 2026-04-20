@@ -22,21 +22,34 @@ export default function AuthScreen() {
       if (!supabase) throw new Error("Supabase client is not initialized. Please check your environment variables and restart the app.");
       if (!email || !password) throw new Error("Email and password are required.");
 
+      console.log(`🔐 Attempting ${mode}...`);
+      
       if (mode === "signup") {
         const { data, error } = await supabase.auth.signUp({ email, password });
-        if (error) throw error;
+        if (error) {
+          console.error("❌ Signup error:", error);
+          throw error;
+        }
+
+        console.log("✅ Signup data:", data);
 
         if (data?.user && !data?.session) {
-          setInfo("Signup success. Confirm email, then sign in.");
+          setInfo("Signup success. Please check your email for a confirmation link, then sign in.");
           setMode("signin");
           return;
         }
         return;
       }
 
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) throw error;
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        console.error("❌ Signin error:", error);
+        throw error;
+      }
+      
+      console.log("✅ Signin success. Session established.");
     } catch (e) {
+      console.error("🚨 Auth catch block:", e);
       setError(e?.message || "Auth failed");
     } finally {
       setLoading(false);

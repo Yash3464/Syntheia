@@ -78,10 +78,10 @@ export default function OnboardingScreen() {
 
     const payload = {
       id: authUser.id,
-      email: (email || authUser.email || '').trim() || null,
       full_name: fullName?.trim() || null,
       username: username?.trim() || null,
       learning_goal: learningGoal?.trim() || null,
+      onboarding_complete: true
     };
 
     const { error } = await supabase
@@ -137,6 +137,11 @@ export default function OnboardingScreen() {
       dispatch({ type: 'SET_PLAN', payload: plan });
       navigate('plan-preview');
     } catch (e) {
+      console.error("🚨 Onboarding completion failed:", e);
+      // Log more details if it's a response error
+      if (e.message && e.message.includes('Internal Server Error')) {
+        console.error("💻 Check backend logs for the full stack trace.");
+      }
       setError(e?.message || 'Unknown error');
     } finally {
       setLoading(false);

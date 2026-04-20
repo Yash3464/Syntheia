@@ -1,0 +1,187 @@
+.cal-screen {
+  background: radial-gradient(circle at 0% 0%, hsla(66, 100%, 50%, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 100% 100%, hsla(210, 100%, 60%, 0.03) 0%, transparent 50%);
+}
+
+.cal-content {
+  padding-bottom: 80px;
+}
+
+.cal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(360px, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+.cal-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cal-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 60px 0 40px;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+}
+
+.week-label-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.week-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--gray-4);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+
+/* Calendar Cells */
+.cal-cell {
+  aspect-ratio: 1;
+  padding: 16px;
+  background: var(--gray-1);
+  border: 1px solid var(--gray-2);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.cal-cell::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: var(--status-color, var(--gray-3));
+  opacity: 0.6;
+}
+
+.cal-cell:hover:not(.empty):not(.locked) {
+  background: var(--gray-2);
+  border-color: var(--gray-3);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.cal-cell.sel {
+  border-color: var(--yellow);
+  background: var(--yellow-glow);
+  box-shadow: 0 0 20px var(--yellow-glow);
+}
+
+.cal-cell.empty {
+  background: transparent;
+  border-color: transparent;
+  cursor: default;
+  pointer-events: none;
+}
+
+.cal-cell.locked {
+  opacity: 0.4;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255,255,255,0.02) 10px,
+    rgba(255,255,255,0.02) 20px
+  );
+  cursor: not-allowed;
+}
+
+.cal-cell-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gray-4);
+}
+
+.cal-cell-status {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 0.8rem;
+}
+
+.cal-cell.completed { --status-color: var(--green); }
+.cal-cell.missed { --status-color: var(--red); }
+.cal-cell.locked { --status-color: var(--gray-3); }
+
+.cal-cell-date {
+  font-size: 0.7rem;
+  color: var(--gray-5);
+  font-family: var(--font-mono);
+}
+
+/* Details Sidebar */
+.cal-detail {
+  position: sticky;
+  top: 40px;
+  background: var(--gray-1);
+  border: 1px solid var(--gray-2);
+  border-radius: var(--radius);
+  padding: 40px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+.detail-topic-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--gray-2);
+}
+
+.detail-topic-row:last-child { border-bottom: none; }
+
+.detail-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--yellow);
+  margin-top: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px var(--yellow-glow);
+}
+
+.detail-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-3);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .cal-layout { grid-template-columns: 1fr; }
+  .cal-detail { position: static; order: -1; min-height: auto; }
+}
+
+@media (max-width: 600px) {
+  .cal-grid, .week-label-grid { grid-template-columns: repeat(4, 1fr); }
+  .week-label:nth-child(n+5) { display: none; }
+}

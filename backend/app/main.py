@@ -1,10 +1,17 @@
-"""
-FastAPI application entry point.
-"""
-
-from fastapi import FastAPI
+import sys
+import os
+from fastapi import FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
+
+# Add project root to sys.path to allow imports from 'database' and 'app'
+# correctly regardless of where the server is started from.
+# Path: backend/app/main.py -> backend/app -> backend -> Syntheia (Root)
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+    print(f"🔧 Added {project_root} to sys.path")
 
 from app.api import api_router
 from app.utils.constants import RESPONSE_MESSAGES
@@ -40,6 +47,17 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc"
 )
+
+# Global Exception Handler to avoid empty 500s (preventing 'Unknown error' in UI)
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    import traceback
+    print(f"🔥 UNCAUGHT GLOBAL ERROR: {str(exc)}")
+    print(traceback.format_exc())
+    return JSONResponse(
+        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        content={"detail": f"Internal System Error: {str(exc)}"}
+    )
 
 # Add CORS middleware
 app.add_middleware(

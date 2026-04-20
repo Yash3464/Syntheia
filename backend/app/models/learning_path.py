@@ -69,6 +69,18 @@ class LearningPath(BaseModel):
                 return task.status
         return None
     
+    def is_unlocked(self, day_number: int) -> bool:
+        """Check if a day is unlocked for completion."""
+        if day_number <= 1:
+            return True
+        
+        # All previous days must be completed
+        for task in self.daily_tasks:
+            if task.day_number < day_number:
+                if task.status != TaskStatus.COMPLETED:
+                    return False
+        return True
+    
     def mark_day_completed(self, day_number: int, actual_time: Optional[int] = None):
         """Mark a day as completed."""
         for task in self.daily_tasks:

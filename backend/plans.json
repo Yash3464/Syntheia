@@ -1407,8 +1407,8 @@
     "actual_end_date": null,
     "total_days": 10,
     "total_hours": 8.0,
-    "completed_days": 0,
-    "completion_percentage": 0.0,
+    "completed_days": 2,
+    "completion_percentage": 20.0,
     "daily_tasks": [
       {
         "day_number": 1,
@@ -1420,9 +1420,9 @@
           "Python Installation & Setup"
         ],
         "estimated_time_minutes": 60,
-        "status": "pending",
+        "status": "completed",
         "actual_time_minutes": null,
-        "completion_date": null,
+        "completion_date": "2026-04-19T23:37:45.461865",
         "notes": "",
         "resources": []
       },
@@ -1436,9 +1436,9 @@
           "Variables and Data Types"
         ],
         "estimated_time_minutes": 45,
-        "status": "pending",
+        "status": "completed",
         "actual_time_minutes": null,
-        "completion_date": null,
+        "completion_date": "2026-04-19T23:38:17.207842",
         "notes": "",
         "resources": []
       },
